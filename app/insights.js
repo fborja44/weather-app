@@ -12,9 +12,11 @@ import {
 } from "react-native";
 import { Stack } from "expo-router";
 import { LinearGradient } from "expo-linear-gradient";
-import { getCurrentDate } from "../../utils/date";
-import LocationIcon from "../../assets/icons/LocationIcon";
-import SunIcon from "../../assets/icons/SunIcon";
+import { getCurrentDate } from "../utils/date";
+import LocationIcon from "../assets/icons/LocationIcon";
+import SunIcon from "../assets/icons/SunIcon";
+import DataTable from "../components/insights/DataTable";
+import DataItem from "../components/insights/DataItem";
 
 Text.defaultProps = Text.defaultProps || {};
 Text.defaultProps.style = { fontFamily: "Inter" };
@@ -64,11 +66,43 @@ const Insights = () => {
             <Text className="text-8xl text-white font-black">81</Text>
             <Text className="text-6xl text-white font-bold">&#0176;F</Text>
           </View>
+          <View className="flex flex-row">
+            <View className="flex flex-col items-end mr-5">
+              <Text className="text-white text-base font-secondary">
+                min temp
+              </Text>
+              <Text className="text-white text-base font-black">
+                65&#0176;F
+              </Text>
+            </View>
+            <View className="flex flex-col items-end">
+              <Text className="text-white text-base font-secondary">
+                max temp
+              </Text>
+              <Text className="text-white text-base font-black">
+                83&#0176;F
+              </Text>
+            </View>
+          </View>
         </View>
         <View className="flex flex-1 flex-col justify-end px-4">
-          <View className="bg-white rounded-2xl h-[90] w-full mb-6"></View>
-          <View className="bg-white rounded-2xl h-[90] w-full mb-6"></View>
-          <View className="bg-white rounded-2xl h-[90] w-full mb-6"></View>
+          <DataTable>
+            <DataItem col left label="Speed" value="12 mi/hr" />
+            <View className="w-[1] h-14 bg-slate-300" />
+            <DataItem col left right label="Gust" value="1.18" />
+            <View className="w-[1] h-14 bg-slate-300" />
+            <DataItem col label="Direction" value="349&#0176; SE" />
+          </DataTable>
+          <DataTable>
+            <DataItem left label="Visibility" value="05:31" />
+            <View className="w-[1] h-14 bg-slate-300" />
+            <DataItem label="Clouds" value="21:24" />
+          </DataTable>
+          <DataTable>
+            <DataItem left label="Sunrise" value="05:31" />
+            <View className="w-[1] h-14 bg-slate-300" />
+            <DataItem label="Sunset" value="21:24" />
+          </DataTable>
         </View>
       </View>
     </SafeAreaView>

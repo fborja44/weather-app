@@ -12,11 +12,11 @@ import {
 } from "react-native";
 import { Stack, useRouter } from "expo-router";
 import { LinearGradient } from "expo-linear-gradient";
-import { getCurrentDate } from "../../utils/date";
-import LocationIcon from "../../assets/icons/LocationIcon";
-import Footer from "../../components/footer/Footer";
-import BackIcon from "../../assets/icons/BackIcon";
-import SunIcon from "../../assets/icons/SunIcon";
+import { getCurrentDate } from "../utils/date";
+import LocationIcon from "../assets/icons/LocationIcon";
+import Footer from "../components/footer/Footer";
+import BackIcon from "../assets/icons/BackIcon";
+import SunIcon from "../assets/icons/SunIcon";
 
 Text.defaultProps = Text.defaultProps || {};
 Text.defaultProps.style = { fontFamily: "Inter" };
@@ -30,7 +30,7 @@ const ForecastItem = () => {
         <Text className="text-white font-secondary text-lg">Today</Text>
       </View>
       <View className="flex flex-1 flex-row items-center">
-        <SunIcon filled color="#FFA630" iconClass="w-7 h-7 mr-1" />
+        <SunIcon filled color="#FFA630" iconClass="w-8 h-8 mr-1.5" />
         <Text className="text-white text-base font-primary">Clear</Text>
       </View>
       <View className="flex-1 items-end">
