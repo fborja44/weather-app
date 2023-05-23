@@ -1,12 +1,12 @@
 import Svg, { Path } from "react-native-svg";
 
-const SettingsIcon = ({ color }) => {
+const SettingsIcon = ({ iconClass, color }) => {
   return (
     <Svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 24 24"
       fill={color}
-      className="w-7 h-7"
+      className={iconClass}
     >
       <Path
         fill-rule="evenodd"
@@ -21,6 +21,11 @@ const SettingsIcon = ({ color }) => {
       />
     </Svg>
   );
+};
+
+SettingsIcon.defaultProps = {
+  color: "white",
+  iconClass: "w-7 h-7",
 };
 
 export default SettingsIcon;
