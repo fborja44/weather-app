@@ -3,6 +3,7 @@ import HumidityIcon from "../../assets/icons/stats/HumidityIcon";
 import RainIcon from "../../assets/icons/stats/RainIcon";
 import BarometerIcon from "../../assets/icons/stats/BarometerIcon";
 import WindIcon from "../../assets/icons/stats/WindIcon";
+import { convertHPAToInHg } from "../../utils/pressure";
 
 const Label = ({ icon, children }) => {
   return (
@@ -28,13 +29,13 @@ const Value = ({ suffix, children }) => {
   );
 };
 
-const InfoTable = () => {
+const InfoTable = ({ data }) => {
   return (
     <View className="box-border mt-6 px-4 w-full">
       <View className="flex flex-row justify-between border-b border-white">
         <View className="box-border flex-1 border-r border-white pl-1 pr-3 py-1 flex-row justify-between">
           <Label icon={<HumidityIcon />}>Humidity</Label>
-          <Value>80%</Value>
+          <Value>{data.main.humidity}%</Value>
         </View>
         <View className="box-border flex-1 pl-3 pr-1 py-1 flex-row justify-between">
           <Label icon={<RainIcon />}>Rain</Label>
@@ -44,11 +45,11 @@ const InfoTable = () => {
       <View className="flex flex-row justify-between">
         <View className="box-border flex-1 border-r border-white pl-1 pr-3 py-1 flex-row justify-between">
           <Label icon={<BarometerIcon />}>Pressure</Label>
-          <Value suffix={"inHg"}>30</Value>
+          <Value suffix={"inHg"}>{convertHPAToInHg(data.main.pressure)}</Value>
         </View>
         <View className="box-border flex-1 pl-3 pr-1 py-1 flex-row justify-between">
           <Label icon={<WindIcon />}>Wind</Label>
-          <Value suffix={"mi/hr"}>12</Value>
+          <Value suffix={"mi/hr"}>{data.wind.speed}</Value>
         </View>
       </View>
     </View>

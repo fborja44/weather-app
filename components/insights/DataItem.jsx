@@ -1,6 +1,6 @@
 import { View, Text } from "react-native";
 
-const DataItem = ({ col, left, right, label, value }) => {
+const DataItem = ({ col, left, right, label, value, icon }) => {
   return (
     <View
       className={`flex flex-1 ${
@@ -10,9 +10,10 @@ const DataItem = ({ col, left, right, label, value }) => {
       }`}
     >
       <View className="flex flex-row items-center">
-        <Text className="font-primary text-slate-400">{label}</Text>
+        {icon && <Text>{icon}</Text>}
+        <Text className={`font-primary text-slate-400 ${icon && "ml-1"}`}>{label}</Text>
       </View>
-      <Text className="font-black text-slate-600 text-base">{value}</Text>
+      <Text className="font-extrabold text-slate-600 text-base">{value}</Text>
     </View>
   );
 };
