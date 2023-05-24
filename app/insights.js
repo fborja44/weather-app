@@ -16,7 +16,10 @@ Text.defaultProps.style = { fontFamily: "Inter" };
 const Insights = () => {
   const location = useSelector((state) => state.locationState);
 
-  const { data, isLoading, error } = useFetch(location);
+  const { data, isLoading, error } = useFetch(
+    "forecast?&hourly=temperature_2m,weathercode,cloudcover,visibility,windspeed_10m,winddirection_10m,windgusts_10m&daily=temperature_2m_max,temperature_2m_min,sunrise,sunset,uv_index_max&current_weather=true&temperature_unit=fahrenheit&windspeed_unit=mph&precipitation_unit=inch&timeformat=unixtime&forecast_days=1&timezone=America%2FNew_York",
+    location
+  );
 
   return (
     <SafeAreaView className="flex flex-1">
@@ -36,7 +39,9 @@ const Insights = () => {
           headerRight: () => (
             <View className="mt-2 h-14">
               <TouchableOpacity className="flex flex-row items-center">
-                <Text className="text-white text-xl font-bold">{location}</Text>
+                <Text className="text-white text-xl font-bold">
+                  {location.city}
+                </Text>
                 <LocationIcon />
               </TouchableOpacity>
             </View>

@@ -32,7 +32,12 @@ const Home = () => {
 
   const location = useSelector((state) => state.locationState);
 
-  const { data, isLoading, error } = useFetch(location);
+  const { data, isLoading, error } = useFetch(
+    `forecast?&hourly=temperature_2m,relativehumidity_2m,apparent_temperature,precipitation_probability,weathercode,surface_pressure,visibility,windspeed_10m&current_weather=true&temperature_unit=fahrenheit&windspeed_unit=mph&precipitation_unit=inch&forecast_days=1`,
+    location
+  );
+
+  console.log("data", data);
 
   return (
     <SafeAreaView className="flex flex-1">
@@ -63,7 +68,9 @@ const Home = () => {
           headerRight: () => (
             <View className="mt-2 h-14">
               <TouchableOpacity className="flex flex-row items-center">
-                <Text className="text-white text-xl font-bold">{location}</Text>
+                <Text className="text-white text-xl font-bold">
+                  {location.city}
+                </Text>
                 <LocationIcon />
               </TouchableOpacity>
             </View>
@@ -74,7 +81,7 @@ const Home = () => {
         showsVerticalScrollIndicator={false}
         className="flex mt-[135] w-full h-full mb-[65]"
       >
-        <HomeWeather data={data} />
+        {!isLoading && !error && <HomeWeather data={data} />}
       </ScrollView>
     </SafeAreaView>
   );

@@ -76,7 +76,7 @@ const Forecast = () => {
           headerRight: () => (
             <View className="mt-2 h-14">
               <TouchableOpacity className="flex flex-row items-center">
-                <Text className="text-white text-xl font-bold">{location}</Text>
+                <Text className="text-white text-xl font-bold">{location.city}</Text>
                 <LocationIcon />
               </TouchableOpacity>
             </View>

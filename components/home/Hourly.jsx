@@ -1,5 +1,8 @@
 import { View, Text, ScrollView } from "react-native";
 import RainIcon from "../../assets/icons/stats/RainIcon";
+import useFetch from "../../hook/useFetch";
+
+import { useSelector } from "react-redux";
 
 const HourlyItem = ({ last }) => {
   return (
@@ -15,21 +18,32 @@ const HourlyItem = ({ last }) => {
 };
 
 const Hourly = () => {
-  return (
-    <ScrollView className="flex-1" horizontal showsHorizontalScrollIndicator={false}>
-      <View className="mx-4 pb-6">
-        <View className="flex flex-row bg-white h-[90] rounded-full min-w-full px-4 box-border self-start shadow-xl">
-          <HourlyItem />
-          <HourlyItem />
-          <HourlyItem />
-          <HourlyItem />
-          <HourlyItem />
-          <HourlyItem />
-          <HourlyItem last />
+  const location = useSelector((state) => state.locationState);
+
+  const data = {};
+
+  if (data) {
+    return (
+      <ScrollView
+        className="flex-1"
+        horizontal
+        showsHorizontalScrollIndicator={false}
+      >
+        <View className="mx-4 pb-6">
+          <View>{}</View>
+          <View className="flex flex-row bg-white h-[90] rounded-full min-w-full px-4 box-border self-start shadow-xl">
+            <HourlyItem />
+            <HourlyItem />
+            <HourlyItem />
+            <HourlyItem />
+            <HourlyItem />
+            <HourlyItem />
+            <HourlyItem last />
+          </View>
         </View>
-      </View>
-    </ScrollView>
-  );
+      </ScrollView>
+    );
+  }
 };
 
 export default Hourly;

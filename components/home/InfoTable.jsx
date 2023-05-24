@@ -35,21 +35,23 @@ const InfoTable = ({ data }) => {
       <View className="flex flex-row justify-between border-b border-white">
         <View className="box-border flex-1 border-r border-white pl-1 pr-3 py-1 flex-row justify-between">
           <Label icon={<HumidityIcon />}>Humidity</Label>
-          <Value>{data.main.humidity}%</Value>
+          <Value>{data.hourly.relativehumidity_2m[0]}%</Value>
         </View>
         <View className="box-border flex-1 pl-3 pr-1 py-1 flex-row justify-between">
           <Label icon={<RainIcon />}>Rain</Label>
-          <Value>89%</Value>
+          <Value>{data.hourly.precipitation_probability[0]}%</Value>
         </View>
       </View>
       <View className="flex flex-row justify-between">
         <View className="box-border flex-1 border-r border-white pl-1 pr-3 py-1 flex-row justify-between">
           <Label icon={<BarometerIcon />}>Pressure</Label>
-          <Value suffix={"inHg"}>{convertHPAToInHg(data.main.pressure)}</Value>
+          <Value suffix={"inHg"}>
+            {convertHPAToInHg(data.hourly.surface_pressure[0])}
+          </Value>
         </View>
         <View className="box-border flex-1 pl-3 pr-1 py-1 flex-row justify-between">
           <Label icon={<WindIcon />}>Wind</Label>
-          <Value suffix={"mi/hr"}>{data.wind.speed}</Value>
+          <Value suffix={"mi/hr"}>{data.current_weather.windspeed}</Value>
         </View>
       </View>
     </View>

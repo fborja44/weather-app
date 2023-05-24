@@ -25,7 +25,7 @@ const DataTable = ({ data }) => {
           col
           left
           label="Speed"
-          value={`${data.wind.speed} mi/hr`}
+          value={`${data.current_weather.windspeed} mi/hr`}
           icon={<SpeedIcon {...ICON_PROPS} />}
         />
         <DataDivider />
@@ -34,14 +34,16 @@ const DataTable = ({ data }) => {
           left
           right
           label="Gust"
-          value={`${data.wind.gust || "0"} mph`}
+          value={`${data.hourly.windgusts_10m[0] || "0"} mph`}
           icon={<GustIcon {...ICON_PROPS} />}
         />
         <DataDivider />
         <DataItem
           col
           label="Direction"
-          value={`${data.wind.deg}° ${convertDegreesToCardinal(data.wind.deg)}`}
+          value={`${
+            data.current_weather.winddirection
+          }° ${convertDegreesToCardinal(data.current_weather.winddirection)}`}
           icon={<CompassIcon {...ICON_PROPS} />}
         />
       </DataTableContainer>
@@ -49,13 +51,13 @@ const DataTable = ({ data }) => {
         <DataItem
           left
           label="Visibility"
-          value={`${(data.visibility / 1000).toFixed(1)} km`}
+          value={`${(data.hourly.visibility[0] / 1000).toFixed(0)} km`}
           icon={<VisibilityIcon {...ICON_PROPS} />}
         />
         <DataDivider />
         <DataItem
           label="Clouds"
-          value={`${data.clouds.all}%`}
+          value={`${data.hourly.cloudcover[0]}%`}
           icon={<CloudsIcon {...ICON_PROPS} />}
         />
       </DataTableContainer>
@@ -63,13 +65,13 @@ const DataTable = ({ data }) => {
         <DataItem
           left
           label="Sunrise"
-          value={parseUTC(data.sys.sunrise)}
+          value={parseUTC(data.daily.sunrise[0])}
           icon={<SunriseIcon {...ICON_PROPS} />}
         />
         <DataDivider />
         <DataItem
           label="Sunset"
-          value={parseUTC(data.sys.sunset)}
+          value={parseUTC(data.daily.sunset[0])}
           icon={<SunsetIcon {...ICON_PROPS} />}
         />
       </DataTableContainer>
