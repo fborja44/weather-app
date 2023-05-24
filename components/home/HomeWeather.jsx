@@ -6,8 +6,11 @@ import InfoTable from "./InfoTable";
 import Message from "./Message";
 import Hourly from "./Hourly";
 import { convertWeatherCodeToString } from "../../utils/weather";
+import { getCurrentHour } from "../../utils/date";
 
 const HomeWeather = ({ data }) => {
+  const hour = getCurrentHour();
+
   if (data.current_weather) {
     return (
       <View className="flex items-center justify-center w-full flex-1">
@@ -29,7 +32,7 @@ const HomeWeather = ({ data }) => {
           <View>
             <Text className="font-secondary text-white">feels like</Text>
             <Text className="text-white font-semibold text-lg relative bottom-1">
-              {data.hourly.apparent_temperature[0].toFixed(0)}&#0176;F
+              {data.hourly.apparent_temperature[hour].toFixed(0)}&#0176;F
             </Text>
           </View>
         </View>

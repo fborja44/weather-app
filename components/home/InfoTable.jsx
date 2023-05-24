@@ -4,6 +4,7 @@ import RainIcon from "../../assets/icons/stats/RainIcon";
 import BarometerIcon from "../../assets/icons/stats/BarometerIcon";
 import WindIcon from "../../assets/icons/stats/WindIcon";
 import { convertHPAToInHg } from "../../utils/pressure";
+import { getCurrentHour } from "../../utils/date";
 
 const Label = ({ icon, children }) => {
   return (
@@ -30,23 +31,25 @@ const Value = ({ suffix, children }) => {
 };
 
 const InfoTable = ({ data }) => {
+  const hour = getCurrentHour();
+
   return (
     <View className="box-border mt-6 px-4 w-full">
       <View className="flex flex-row justify-between border-b border-white">
         <View className="box-border flex-1 border-r border-white pl-1 pr-3 py-1 flex-row justify-between">
           <Label icon={<HumidityIcon />}>Humidity</Label>
-          <Value>{data.hourly.relativehumidity_2m[0]}%</Value>
+          <Value>{data.hourly.relativehumidity_2m[hour]}%</Value>
         </View>
         <View className="box-border flex-1 pl-3 pr-1 py-1 flex-row justify-between">
           <Label icon={<RainIcon />}>Rain</Label>
-          <Value>{data.hourly.precipitation_probability[0]}%</Value>
+          <Value>{data.hourly.precipitation_probability[hour]}%</Value>
         </View>
       </View>
       <View className="flex flex-row justify-between">
         <View className="box-border flex-1 border-r border-white pl-1 pr-3 py-1 flex-row justify-between">
           <Label icon={<BarometerIcon />}>Pressure</Label>
           <Value suffix={"inHg"}>
-            {convertHPAToInHg(data.hourly.surface_pressure[0])}
+            {convertHPAToInHg(data.hourly.surface_pressure[hour])}
           </Value>
         </View>
         <View className="box-border flex-1 pl-3 pr-1 py-1 flex-row justify-between">

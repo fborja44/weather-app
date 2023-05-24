@@ -14,10 +14,13 @@ import CloudsIcon from "../../assets/icons/stats/CloudsIcon";
 import SunriseIcon from "../../assets/icons/stats/SunriseIcon";
 import SunsetIcon from "../../assets/icons/stats/SunsetIcon";
 import { convertDegreesToCardinal } from "../../utils/direction";
-import { parseUTC } from "../../utils/date";
+import { getCurrentHour, parseUnixTime } from "../../utils/date";
 
 const DataTable = ({ data }) => {
   const ICON_PROPS = { color: "rgb(148, 163, 184)", iconClass: "w-6 h-6" };
+
+  const hour = getCurrentHour();
+
   return (
     <>
       <DataTableContainer>
@@ -34,7 +37,7 @@ const DataTable = ({ data }) => {
           left
           right
           label="Gust"
-          value={`${data.hourly.windgusts_10m[0] || "0"} mph`}
+          value={`${data.hourly.windgusts_10m[hour] || "0"} mph`}
           icon={<GustIcon {...ICON_PROPS} />}
         />
         <DataDivider />
@@ -51,13 +54,13 @@ const DataTable = ({ data }) => {
         <DataItem
           left
           label="Visibility"
-          value={`${(data.hourly.visibility[0] / 1000).toFixed(0)} km`}
+          value={`${(data.hourly.visibility[hour] / 1000).toFixed(0)} km`}
           icon={<VisibilityIcon {...ICON_PROPS} />}
         />
         <DataDivider />
         <DataItem
           label="Clouds"
-          value={`${data.hourly.cloudcover[0]}%`}
+          value={`${data.hourly.cloudcover[hour]}%`}
           icon={<CloudsIcon {...ICON_PROPS} />}
         />
       </DataTableContainer>
@@ -65,13 +68,13 @@ const DataTable = ({ data }) => {
         <DataItem
           left
           label="Sunrise"
-          value={parseUTC(data.daily.sunrise[0])}
+          value={parseUnixTime(data.daily.sunrise[0])}
           icon={<SunriseIcon {...ICON_PROPS} />}
         />
         <DataDivider />
         <DataItem
           label="Sunset"
-          value={parseUTC(data.daily.sunset[0])}
+          value={parseUnixTime(data.daily.sunset[0])}
           icon={<SunsetIcon {...ICON_PROPS} />}
         />
       </DataTableContainer>

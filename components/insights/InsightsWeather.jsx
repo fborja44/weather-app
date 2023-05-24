@@ -3,8 +3,11 @@ import React from "react";
 import { View, Text } from "react-native";
 import SunIcon from "../../assets/icons/SunIcon";
 import DataTable from "./DataTable";
+import { getCurrentHour } from "../../utils/date";
 
 const InsightsWeather = ({ data }) => {
+  const hour = getCurrentHour();
+
   if (data.current_weather) {
     return (
       <>
