@@ -1,37 +1,24 @@
-import React, { useState } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
 
-import {
-  StyleSheet,
-  View,
-  Text,
-  SafeAreaView,
-  Dimensions,
-  ScrollView,
-  TouchableOpacity,
-} from "react-native";
+import { View, Text, SafeAreaView, TouchableOpacity } from "react-native";
 import { Stack } from "expo-router";
-import { LinearGradient } from "expo-linear-gradient";
 import { getCurrentDate } from "../utils/date";
 import LocationIcon from "../assets/icons/LocationIcon";
 import SunIcon from "../assets/icons/SunIcon";
 import DataTable from "../components/insights/DataTable";
 import DataItem from "../components/insights/DataItem";
+import RadialBackground from "../components/insights/RadialBackground";
 
 Text.defaultProps = Text.defaultProps || {};
 Text.defaultProps.style = { fontFamily: "Inter" };
-
-const screenDimensions = Dimensions.get("screen");
 
 const Insights = () => {
   const location = useSelector((state) => state.locationState);
 
   return (
     <SafeAreaView className="flex flex-1">
-      <LinearGradient
-        colors={["#F17720", "#FFA630", "#FFFFFF"]}
-        style={styles.background}
-      />
+      <RadialBackground />
       <Stack.Screen
         options={{
           title: "",
@@ -108,18 +95,5 @@ const Insights = () => {
     </SafeAreaView>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  background: {
-    position: "absolute",
-    left: 0,
-    right: 0,
-    top: 0,
-    height: screenDimensions.height,
-  },
-});
 
 export default Insights;

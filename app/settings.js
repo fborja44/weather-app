@@ -1,19 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
 
 import {
   StyleSheet,
-  View,
   Text,
   SafeAreaView,
   Dimensions,
   ScrollView,
-  TouchableOpacity,
 } from "react-native";
 import { Stack } from "expo-router";
 import { LinearGradient } from "expo-linear-gradient";
-import { getCurrentDate } from "../utils/date";
-import LocationIcon from "../assets/icons/LocationIcon";
-import Footer from "../components/footer/Footer";
 import SettingsIcon from "../assets/icons/SettingsIcon";
 
 Text.defaultProps = Text.defaultProps || {};
@@ -22,11 +17,11 @@ Text.defaultProps.style = { fontFamily: "Inter" };
 const screenDimensions = Dimensions.get("screen");
 
 const Settings = () => {
-
   return (
     <SafeAreaView className="flex flex-1">
       <LinearGradient
         colors={["#2B2543", "#788AA0", "#BBC4CF", "#FFFFFF"]}
+        locations={[0, 0.4, 0.65, 0.8]}
         style={styles.background}
       />
       <Stack.Screen
@@ -39,7 +34,9 @@ const Settings = () => {
             fontFamily: "Inter",
             fontWeight: "800",
           },
-          headerLeft: () => <SettingsIcon color="white" iconClass="w-6 h-6 mr-2" />,
+          headerLeft: () => (
+            <SettingsIcon color="white" iconClass="w-6 h-6 mr-2" />
+          ),
         }}
       />
       <ScrollView

@@ -3,7 +3,7 @@ import DataItem from "./DataItem";
 
 const DataTable = ({ children }) => {
   return (
-    <View className="bg-white rounded-2xl h-[85] w-full mb-6 px-6 flex flex-row items-center justify-between">
+    <View className="bg-white rounded-2xl h-[85] w-full mb-6 px-6 flex flex-row items-center justify-between shadow-xl">
       {children}
     </View>
   );

@@ -16,9 +16,9 @@ const HourlyItem = ({ last }) => {
 
 const Hourly = () => {
   return (
-    <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-      <View className="mx-4">
-        <View className="flex flex-row bg-white h-[90] rounded-full min-w-full px-4 box-border self-start">
+    <ScrollView className="flex-1" horizontal showsHorizontalScrollIndicator={false}>
+      <View className="mx-4 pb-6">
+        <View className="flex flex-row bg-white h-[90] rounded-full min-w-full px-4 box-border self-start shadow-xl">
           <HourlyItem />
           <HourlyItem />
           <HourlyItem />

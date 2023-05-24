@@ -37,6 +37,7 @@ const Home = () => {
     <SafeAreaView className="flex flex-1">
       <LinearGradient
         colors={["#00A7E1", "#62C9EC", "#C1EAF8", "#FFFFFF"]}
+        locations={[0, 0.4, 0.65, 0.80]}
         style={styles.background}
       />
       <Stack.Screen

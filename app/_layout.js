@@ -24,7 +24,7 @@ const Layout = () => {
     return null;
   }
   return (
-    <ReduxProvider store={store}>
+    <ReduxProvider store={store} hidden>
       <StatusBar barStyle="light-content" />
       <Stack onLayout={onLayoutRootView} />
       <Footer />
