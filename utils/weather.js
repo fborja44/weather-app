@@ -1,39 +1,58 @@
 export const convertWeatherCodeToString = (weatherCode) => {
-  let weatherString = "";
-  switch (weatherCode) {
-    case 0:
-      weatherString = "Clear sky";
-      break;
-    case 1:
-      weatherString = "Cloudy";
-      break;
-    case 2:
-      weatherString = "Partly cloudy";
-      break;
-    case 3:
-      weatherString = "Overcast";
-      break;
-    case 10:
-      weatherString = "Rain showers";
-      break;
-    case 20:
-      weatherString = "Rain";
-      break;
-    case 21:
-      weatherString = "Heavy rain";
-      break;
-    case 30:
-      weatherString = "Snow showers";
-      break;
-    case 40:
-      weatherString = "Snowfall";
-      break;
-    case 41:
-      weatherString = "Heavy snowfall";
-      break;
-    default:
-      weatherString = "Unknown weather";
-      break;
-  }
-  return weatherString;
+  const weatherCodes = {
+    0: "Clear",
+    1: "Cloudy",
+    2: "Partly cloudy",
+    3: "Partly cloudy",
+    4: "Partly cloudy",
+    5: "Haze",
+    10: "Mist",
+    21: "Rain possible",
+    22: "Snow possible",
+    23: "Sleet possible",
+    24: "Freezing drizzle",
+    29: "Thundery outbreaks",
+    38: "Blowing snow",
+    39: "Blizzard",
+    45: "Fog",
+    49: "Freezing fog",
+    50: "Light drizzle",
+    51: "Drizzle",
+    52: "Drizzle",
+    53: "Drizzle",
+    54: "Drizzle",
+    55: "Drizzle",
+    56: "Freezing drizzle",
+    57: "Heavy drizzle",
+    60: "Light rain",
+    61: "Rain",
+    62: "Moderate rain",
+    63: "Moderate rain",
+    64: "Heavy rain",
+    65: "Heavy rain",
+    66: "Freezing rain",
+    67: "Freezing rain",
+    70: "Light snow",
+    71: "Snow",
+    72: "Moderate snow",
+    73: "Moderate snow",
+    74: "Heavy snow",
+    75: "Heavy snow",
+    79: "Ice pellets",
+    80: "Rain shower",
+    81: "Rain shower",
+    82: "Rain shower",
+    83: "Sleet showers",
+    84: "Sleet showers",
+    85: "Snow showers",
+    86: "Snow showers",
+    87: "Ice pellets",
+    88: "Ice pellets",
+    91: "Rain with thunder",
+    92: "Rain with thunder",
+    93: "Snow with thunder",
+    94: "Snow with thunder",
+  };
+
+  return weatherCodes[weatherCode] || "Unknown";
 };

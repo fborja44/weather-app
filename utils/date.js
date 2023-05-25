@@ -31,6 +31,41 @@ export const getCurrentDate = () => {
   return `${dateOfMonth} ${monthName}, ${dayOfWeek}`;
 };
 
+export const getDayOfWeek = (unixTime) => {
+  const months = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+
+  const daysOfWeek = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+
+  const date = new Date(unixTime * 1000); // Convert Unix time to milliseconds
+
+  const dayOfWeek = daysOfWeek[date.getUTCDay()];
+  const month = months[date.getUTCMonth()];
+  const dayOfMonth = date.getUTCDate();
+
+  return `${dayOfWeek}, ${month}, ${dayOfMonth}`;
+};
+
 export const parseUnixTime = (unixTime) => {
   const date = new Date(unixTime * 1000); // Convert Unix timestamp to milliseconds
   const hours = ("0" + date.getHours()).slice(-2); // Get the hours in 2-digit format

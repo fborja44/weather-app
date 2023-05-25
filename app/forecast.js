@@ -16,37 +16,24 @@ import { getCurrentDate } from "../utils/date";
 import LocationIcon from "../assets/icons/LocationIcon";
 import Footer from "../components/footer/Footer";
 import BackIcon from "../assets/icons/BackIcon";
-import SunIcon from "../assets/icons/SunIcon";
+import ForecastWeather from "../components/forecast/ForecastWeather";
+
+import useFetch from "../hook/useFetch";
 
 Text.defaultProps = Text.defaultProps || {};
 Text.defaultProps.style = { fontFamily: "Inter" };
 
 const screenDimensions = Dimensions.get("screen");
 
-const ForecastItem = () => {
-  return (
-    <View className="flex flex-row w-full items-center mb-2">
-      <View className="w-2/5">
-        <Text className="text-white font-secondary text-lg">Today</Text>
-      </View>
-      <View className="flex flex-1 flex-row items-center">
-        <SunIcon filled color="#FFA630" iconClass="w-8 h-8 mr-1.5" />
-        <Text className="text-white text-base font-primary">Clear</Text>
-      </View>
-      <View className="flex-1 items-end">
-        <View className="flex flex-row mt-4">
-          <Text className="text-5xl text-white font-black">81</Text>
-          <Text className="text-3xl text-white font-bold">&#0176;F</Text>
-        </View>
-      </View>
-    </View>
-  );
-};
-
 const Forecast = () => {
   const router = useRouter();
 
   const location = useSelector((state) => state.locationState);
+
+  const { data, isLoading, error } = useFetch(
+    `forecast?&daily=weathercode,temperature_2m_max&temperature_unit=fahrenheit&windspeed_unit=mph&precipitation_unit=inch&timeformat=unixtime&forecast_days=14&timezone=America%2FNew_York`,
+    location
+  );
 
   return (
     <SafeAreaView className="flex flex-1">
@@ -76,7 +63,9 @@ const Forecast = () => {
           headerRight: () => (
             <View className="mt-2 h-14">
               <TouchableOpacity className="flex flex-row items-center">
-                <Text className="text-white text-xl font-bold">{location.city}</Text>
+                <Text className="text-white text-xl font-bold">
+                  {location.city}
+                </Text>
                 <LocationIcon />
               </TouchableOpacity>
             </View>
@@ -85,11 +74,9 @@ const Forecast = () => {
       />
       <ScrollView
         showsVerticalScrollIndicator={false}
-        className="flex mt-[135] w-full px-4"
+        className="flex mt-[125] w-full px-4"
       >
-        <ForecastItem />
-        <ForecastItem />
-        <ForecastItem />
+        <ForecastWeather data={data} />
       </ScrollView>
       <Footer />
     </SafeAreaView>

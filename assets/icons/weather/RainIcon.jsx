@@ -1,6 +1,6 @@
 import Svg, { Path } from "react-native-svg";
 
-const RainIcon = () => {
+const RainIcon = ({ className }) => {
   return (
     <Svg
       viewBox="0 0 24 24"

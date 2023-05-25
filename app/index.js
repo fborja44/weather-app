@@ -37,8 +37,6 @@ const Home = () => {
     location
   );
 
-  console.log("data", data);
-
   return (
     <SafeAreaView className="flex flex-1">
       <LinearGradient
@@ -61,7 +59,7 @@ const Home = () => {
                 onPress={() => router.push("/forecast")}
               >
                 <CalendarIcon />
-                <Text className="text-white">10 Day Forecast</Text>
+                <Text className="text-white">14 Day Forecast</Text>
               </TouchableOpacity>
             </View>
           ),
