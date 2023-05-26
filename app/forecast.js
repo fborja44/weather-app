@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 
 import {
@@ -30,10 +30,14 @@ const Forecast = () => {
 
   const location = useSelector((state) => state.locationState);
 
-  const { data, isLoading, error } = useFetch(
+  const { data, isLoading, error, refetch } = useFetch(
     `forecast?&daily=weathercode,temperature_2m_max&temperature_unit=fahrenheit&windspeed_unit=mph&precipitation_unit=inch&timeformat=unixtime&forecast_days=14&timezone=America%2FNew_York`,
     location
   );
+
+  useEffect(() => {
+    refetch();
+  }, [location]);
 
   return (
     <SafeAreaView className="flex flex-1">

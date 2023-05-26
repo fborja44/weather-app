@@ -51,7 +51,7 @@ const Settings = () => {
         className="flex mt-[125] w-full px-4"
       >
         <View>
-          <Text className="font-secondary text-white text-lg">Preferences</Text>
+          <Text className="font-secondary text-white text-lg mb-4">Preferences</Text>
           <PreferenceSelect
             label="Temperature Unit:"
             icon={
