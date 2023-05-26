@@ -1,13 +1,13 @@
 import Svg, { Path } from "react-native-svg";
 
-const LocationIcon = () => {
+const LocationIcon = ({ iconClass, color }) => {
   return (
     <Svg
       xmlns="http://www.w3.org/2000/Svg"
       viewBox="0 0 24 24"
       stroke-width="1.5"
-      stroke="white"
-      className="w-6 h-6 ml-1"
+      stroke={color}
+      className={iconClass}
     >
       <Path
         stroke-linecap="round"
@@ -21,6 +21,11 @@ const LocationIcon = () => {
       />
     </Svg>
   );
+};
+
+LocationIcon.defaultProps = {
+  color: "white",
+  iconClass: "w-6 h-6",
 };
 
 export default LocationIcon;

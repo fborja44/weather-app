@@ -11,7 +11,7 @@ Text.defaultProps.style = { fontFamily: "Inter" };
 const ForecastItem = ({ data, index }) => {
   if (data) {
     return (
-      <View className="flex flex-row w-full items-center mb-4">
+      <View className="flex flex-row w-full items-center mb-4 h-[60]">
         <View className="w-2/5">
           <Text className="text-white font-secondary text-base">
             {index === 0 ? "Today" : getDayOfWeek(data.daily.time[index])}

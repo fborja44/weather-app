@@ -13,12 +13,12 @@ import {
 import { Stack, useRouter } from "expo-router";
 import { LinearGradient } from "expo-linear-gradient";
 import { getCurrentDate } from "../utils/date";
-import LocationIcon from "../assets/icons/LocationIcon";
 import Footer from "../components/footer/Footer";
 import BackIcon from "../assets/icons/BackIcon";
 import ForecastWeather from "../components/forecast/ForecastWeather";
 
 import useFetch from "../hook/useFetch";
+import LocationButton from "../components/common/LocationButton";
 
 Text.defaultProps = Text.defaultProps || {};
 Text.defaultProps.style = { fontFamily: "Inter" };
@@ -39,6 +39,7 @@ const Forecast = () => {
     <SafeAreaView className="flex flex-1">
       <LinearGradient
         colors={["#4800E1", "#D962EC", "#F8C1D5", "#FFFFFF"]}
+        locations={[0, 0.62, 0.77, 0.88]}
         style={styles.background}
       />
       <Stack.Screen
@@ -60,16 +61,7 @@ const Forecast = () => {
               </TouchableOpacity>
             </View>
           ),
-          headerRight: () => (
-            <View className="mt-2 h-14">
-              <TouchableOpacity className="flex flex-row items-center">
-                <Text className="text-white text-xl font-bold">
-                  {location.city}
-                </Text>
-                <LocationIcon />
-              </TouchableOpacity>
-            </View>
-          ),
+          headerRight: () => <LocationButton />,
         }}
       />
       <ScrollView

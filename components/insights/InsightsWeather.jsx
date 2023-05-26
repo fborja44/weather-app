@@ -17,7 +17,7 @@ const InsightsWeather = ({ data }) => {
           </View>
           <View className="flex flex-row mt-4">
             <Text className="text-8xl text-white font-black">
-              {data.current_weather.temperature}
+              {data.current_weather.temperature.toFixed(0)}
             </Text>
             <Text className="text-6xl text-white font-bold">&#0176;F</Text>
           </View>

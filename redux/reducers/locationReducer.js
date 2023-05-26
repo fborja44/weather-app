@@ -1,5 +1,7 @@
 const initialState = {
   city: "New York",
+  country: "United States",
+  timezone: "America/New_York",
   lat: 40.71427,
   long: -74.00597,
 };

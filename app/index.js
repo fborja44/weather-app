@@ -1,5 +1,4 @@
 import React from "react";
-import { useSelector } from "react-redux";
 
 import { useRouter } from "expo-router";
 
@@ -15,12 +14,13 @@ import {
 import { Stack } from "expo-router";
 import { LinearGradient } from "expo-linear-gradient";
 import { getCurrentDate } from "../utils/date";
-import LocationIcon from "../assets/icons/LocationIcon";
+import LocationButton from "../components/common/LocationButton";
 import CalendarIcon from "../assets/icons/CalendarIcon";
 
 import HomeWeather from "../components/home/HomeWeather";
 
 import useFetch from "../hook/useFetch";
+import { useSelector } from "react-redux";
 
 Text.defaultProps = Text.defaultProps || {};
 Text.defaultProps.style = { fontFamily: "Inter" };
@@ -29,7 +29,6 @@ const screenDimensions = Dimensions.get("screen");
 
 const Home = () => {
   const router = useRouter();
-
   const location = useSelector((state) => state.locationState);
 
   const { data, isLoading, error } = useFetch(
@@ -63,16 +62,7 @@ const Home = () => {
               </TouchableOpacity>
             </View>
           ),
-          headerRight: () => (
-            <View className="mt-2 h-14">
-              <TouchableOpacity className="flex flex-row items-center">
-                <Text className="text-white text-xl font-bold">
-                  {location.city}
-                </Text>
-                <LocationIcon />
-              </TouchableOpacity>
-            </View>
-          ),
+          headerRight: () => <LocationButton />
         }}
       />
       <ScrollView
