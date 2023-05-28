@@ -22,6 +22,7 @@ import HomeWeather from "../components/home/HomeWeather";
 import useFetch from "../hook/useFetch";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
+import { buildEndpoint } from "../utils/endpoint";
 
 Text.defaultProps = Text.defaultProps || {};
 Text.defaultProps.style = { fontFamily: "Inter" };
@@ -31,15 +32,19 @@ const screenDimensions = Dimensions.get("screen");
 const Home = () => {
   const router = useRouter();
   const location = useSelector((state) => state.locationState);
+  const preferences = useSelector((state) => state.preferencesState);
 
   const { data, isLoading, error, refetch } = useFetch(
-    `forecast?&hourly=temperature_2m,relativehumidity_2m,apparent_temperature,precipitation_probability,weathercode,surface_pressure,visibility,windspeed_10m&current_weather=true&temperature_unit=fahrenheit&windspeed_unit=mph&precipitation_unit=inch&timeformat=unixtime&forecast_days=1`,
+    buildEndpoint(
+      "forecast?&hourly=temperature_2m,relativehumidity_2m,apparent_temperature,precipitation_probability,weathercode,surface_pressure,visibility,windspeed_10m&current_weather=true&timeformat=unixtime&forecast_days=1",
+      preferences
+    ),
     location
   );
 
   useEffect(() => {
     refetch();
-  }, [location]);
+  }, [location, preferences]);
 
   return (
     <SafeAreaView className="flex flex-1">

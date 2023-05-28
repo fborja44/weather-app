@@ -19,6 +19,7 @@ import ForecastWeather from "../components/forecast/ForecastWeather";
 
 import useFetch from "../hook/useFetch";
 import LocationButton from "../components/common/LocationButton";
+import { buildEndpoint } from "../utils/endpoint";
 
 Text.defaultProps = Text.defaultProps || {};
 Text.defaultProps.style = { fontFamily: "Inter" };
@@ -29,9 +30,13 @@ const Forecast = () => {
   const router = useRouter();
 
   const location = useSelector((state) => state.locationState);
+  const preferences = useSelector((state) => state.preferencesState);
 
   const { data, isLoading, error, refetch } = useFetch(
-    `forecast?&daily=weathercode,temperature_2m_max&temperature_unit=fahrenheit&windspeed_unit=mph&precipitation_unit=inch&timeformat=unixtime&forecast_days=14&timezone=America%2FNew_York`,
+    buildEndpoint(
+      "forecast?&daily=weathercode,temperature_2m_max&timeformat=unixtime&forecast_days=14&timezone=America%2FNew_York",
+      preferences
+    ),
     location
   );
 

@@ -7,9 +7,11 @@ import Message from "./Message";
 import Hourly from "./Hourly";
 import { convertWeatherCodeToString } from "../../utils/weather";
 import { getCurrentHour } from "../../utils/date";
+import { useSelector } from "react-redux";
 
 const HomeWeather = ({ data }) => {
   const hour = getCurrentHour();
+  const preferences = useSelector((state) => state.preferencesState);
 
   if (data.current_weather) {
     return (
@@ -23,7 +25,9 @@ const HomeWeather = ({ data }) => {
               <Text className="text-7xl text-white font-black">
                 {data.current_weather.temperature.toFixed(0)}
               </Text>
-              <Text className="text-5xl text-white font-bold">&#0176;F</Text>
+              <Text className="text-5xl text-white font-bold">
+                &#0176;{preferences.temperature_unit}
+              </Text>
             </View>
             <Text className="text-lg text-white font-bold relative bottom-2 left-1 capitalize">
               {convertWeatherCodeToString(data.current_weather.weathercode)}
@@ -32,7 +36,8 @@ const HomeWeather = ({ data }) => {
           <View>
             <Text className="font-secondary text-white">feels like</Text>
             <Text className="text-white font-semibold text-lg relative bottom-1">
-              {data.hourly.apparent_temperature[hour].toFixed(0)}&#0176;F
+              {data.hourly.apparent_temperature[hour].toFixed(0)}&#0176;
+              {preferences.temperature_unit}
             </Text>
           </View>
         </View>

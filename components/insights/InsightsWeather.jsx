@@ -3,8 +3,11 @@ import React from "react";
 import { View, Text } from "react-native";
 import SunIcon from "../../assets/icons/SunIcon";
 import DataTable from "./DataTable";
+import { useSelector } from "react-redux";
 
 const InsightsWeather = ({ data }) => {
+  const preferences = useSelector((state) => state.preferencesState);
+
   if (data.current_weather) {
     return (
       <>
@@ -19,7 +22,9 @@ const InsightsWeather = ({ data }) => {
             <Text className="text-8xl text-white font-black">
               {data.current_weather.temperature.toFixed(0)}
             </Text>
-            <Text className="text-6xl text-white font-bold">&#0176;F</Text>
+            <Text className="text-6xl text-white font-bold">
+              &#0176;{preferences.temperature_unit}
+            </Text>
           </View>
           <View className="flex flex-row">
             <View className="flex flex-col items-end mr-5">
@@ -27,7 +32,8 @@ const InsightsWeather = ({ data }) => {
                 min temp
               </Text>
               <Text className="text-white text-base font-black">
-                {data.daily.temperature_2m_max[0].toFixed(0)}&#0176;F
+                {data.daily.temperature_2m_max[0].toFixed(0)}&#0176;
+                {preferences.temperature_unit}
               </Text>
             </View>
             <View className="flex flex-col items-end">
@@ -35,7 +41,8 @@ const InsightsWeather = ({ data }) => {
                 max temp
               </Text>
               <Text className="text-white text-base font-black">
-                {data.daily.temperature_2m_min[0].toFixed(0)}&#0176;F
+                {data.daily.temperature_2m_min[0].toFixed(0)}&#0176;
+                {preferences.temperature_unit}
               </Text>
             </View>
           </View>

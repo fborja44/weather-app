@@ -16,19 +16,15 @@ import { Picker } from "@react-native-picker/picker";
 import WindIcon from "../assets/icons/stats/WindIcon";
 import RainIcon from "../assets/icons/stats/RainIcon";
 
+import { useSelector } from "react-redux";
+
 Text.defaultProps = Text.defaultProps || {};
 Text.defaultProps.style = { fontFamily: "Inter" };
 
 const screenDimensions = Dimensions.get("screen");
 
 const Settings = () => {
-  const temp_prefix = "&temperature_unit=";
-  const wind_prefix = "&windspeed_unit=";
-  const precip_prefix = "&precipitation_unit=";
-
-  const [selectedTemp, setSelectedTemp] = useState("C");
-  const [selectedWind, setSelectedWind] = useState("Km/h");
-  const [selectedPrecipitation, setSelectedPrecipitation] = useState("in");
+  const preferences = useSelector((state) => state.preferencesState);
 
   return (
     <SafeAreaView className="flex flex-1">
@@ -55,8 +51,11 @@ const Settings = () => {
         className="flex mt-[125] w-full px-4"
       >
         <View>
-          <Text className="font-secondary text-white text-lg mb-4">Preferences</Text>
+          <Text className="font-secondary text-white text-lg mb-4">
+            Preferences
+          </Text>
           <PreferenceSelect
+            id="temperature_unit"
             label="Temperature Unit:"
             icon={
               <TemperatureIcon
@@ -64,13 +63,13 @@ const Settings = () => {
                 iconClass="w-6 h-6 relative top-[1]"
               />
             }
-            selectedValue={selectedTemp}
-            setSelectedValue={setSelectedTemp}
+            selectedValue={preferences.temperature_unit}
           >
-            <Picker.Item label="Fahrenheit (&#0176;F)" value="f" />
-            <Picker.Item label="Celcius (&#0176;C)" value="c" />
+            <Picker.Item label="Fahrenheit (&#0176;F)" value="F" />
+            <Picker.Item label="Celcius (&#0176;C)" value="C" />
           </PreferenceSelect>
           <PreferenceSelect
+            id="windspeed_unit"
             label="Wind Speed Unit:"
             icon={
               <WindIcon
@@ -78,8 +77,7 @@ const Settings = () => {
                 iconClass="w-7 h-7 relative top-[1]"
               />
             }
-            selectedValue={selectedWind}
-            setSelectedValue={setSelectedWind}
+            selectedValue={preferences.windspeed_unit}
           >
             <Picker.Item label="Km/h" value="Km/h" />
             <Picker.Item label="m/s" value="m/s" />
@@ -87,6 +85,7 @@ const Settings = () => {
             <Picker.Item label="Knots" value="kn" />
           </PreferenceSelect>
           <PreferenceSelect
+            id="precipitation_unit"
             label="Precipitation Unit:"
             icon={
               <RainIcon
@@ -94,8 +93,7 @@ const Settings = () => {
                 iconClass="w-5 h-5 relative top-[1]"
               />
             }
-            selectedValue={selectedPrecipitation}
-            setSelectedValue={setSelectedPrecipitation}
+            selectedValue={preferences.precipitation_unit}
           >
             <Picker.Item label="Millimeters" value="mm" />
             <Picker.Item label="Inches" value="in" />

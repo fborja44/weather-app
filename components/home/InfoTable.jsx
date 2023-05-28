@@ -5,6 +5,7 @@ import BarometerIcon from "../../assets/icons/stats/BarometerIcon";
 import WindIcon from "../../assets/icons/stats/WindIcon";
 import { convertHPAToInHg } from "../../utils/pressure";
 import { getCurrentHour } from "../../utils/date";
+import { useSelector } from "react-redux";
 
 const Label = ({ icon, children }) => {
   return (
@@ -32,6 +33,7 @@ const Value = ({ suffix, children }) => {
 
 const InfoTable = ({ data }) => {
   const hour = getCurrentHour();
+  const preferences = useSelector((state) => state.preferencesState);
 
   return (
     <View className="box-border mt-6 px-4 w-full">
@@ -54,7 +56,9 @@ const InfoTable = ({ data }) => {
         </View>
         <View className="box-border flex-1 pl-3 pr-1 py-1 flex-row justify-between">
           <Label icon={<WindIcon />}>Wind</Label>
-          <Value suffix={"mi/hr"}>{data.current_weather.windspeed}</Value>
+          <Value suffix={preferences.windspeed_unit}>
+            {data.current_weather.windspeed}
+          </Value>
         </View>
       </View>
     </View>

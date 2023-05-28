@@ -10,14 +10,20 @@ import useFetch from "../hook/useFetch";
 import InsightsWeather from "../components/insights/InsightsWeather";
 import LocationButton from "../components/common/LocationButton";
 
+import { buildEndpoint } from "../utils/endpoint";
+
 Text.defaultProps = Text.defaultProps || {};
 Text.defaultProps.style = { fontFamily: "Inter" };
 
 const Insights = () => {
   const location = useSelector((state) => state.locationState);
+  const preferences = useSelector((state) => state.preferencesState);
 
   const { data, isLoading, error, refetch } = useFetch(
-    "forecast?&hourly=temperature_2m,weathercode,cloudcover,visibility,windspeed_10m,winddirection_10m,windgusts_10m&daily=temperature_2m_max,temperature_2m_min,sunrise,sunset,uv_index_max&current_weather=true&temperature_unit=fahrenheit&windspeed_unit=mph&precipitation_unit=inch&timeformat=unixtime&forecast_days=1&timezone=America%2FNew_York",
+    buildEndpoint(
+      "forecast?&hourly=temperature_2m,weathercode,cloudcover,visibility,windspeed_10m,winddirection_10m,windgusts_10m&daily=temperature_2m_max,temperature_2m_min,sunrise,sunset,uv_index_max&current_weather=true&timeformat=unixtime&forecast_days=1&timezone=America%2FNew_York",
+      preferences
+    ),
     location
   );
 

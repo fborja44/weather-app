@@ -15,10 +15,12 @@ import SunriseIcon from "../../assets/icons/stats/SunriseIcon";
 import SunsetIcon from "../../assets/icons/stats/SunsetIcon";
 import { convertDegreesToCardinal } from "../../utils/direction";
 import { getCurrentHour, parseUnixTime } from "../../utils/date";
+import { useSelector } from "react-redux";
 
 const DataTable = ({ data }) => {
   const ICON_PROPS = { color: "rgb(148, 163, 184)", iconClass: "w-6 h-6" };
 
+  const preferences = useSelector((state) => state.preferencesState);
   const hour = getCurrentHour();
 
   return (
@@ -28,7 +30,7 @@ const DataTable = ({ data }) => {
           col
           left
           label="Speed"
-          value={`${data.current_weather.windspeed} mi/hr`}
+          value={`${data.current_weather.windspeed} ${preferences.windspeed_unit}`}
           icon={<SpeedIcon {...ICON_PROPS} />}
         />
         <DataDivider />
@@ -37,7 +39,9 @@ const DataTable = ({ data }) => {
           left
           right
           label="Gust"
-          value={`${data.hourly.windgusts_10m[hour] || "0"} mph`}
+          value={`${data.hourly.windgusts_10m[hour] || "0"} ${
+            preferences.windspeed_unit
+          }`}
           icon={<GustIcon {...ICON_PROPS} />}
         />
         <DataDivider />

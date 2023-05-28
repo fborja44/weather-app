@@ -4,11 +4,14 @@ import { View, Text } from "react-native";
 import SunIcon from "../../assets/icons/SunIcon";
 import { getDayOfWeek } from "../../utils/date";
 import { convertWeatherCodeToString } from "../../utils/weather";
+import { useSelector } from "react-redux";
 
 Text.defaultProps = Text.defaultProps || {};
 Text.defaultProps.style = { fontFamily: "Inter" };
 
 const ForecastItem = ({ data, index }) => {
+  const preferences = useSelector((state) => state.preferencesState);
+
   if (data) {
     return (
       <View className="flex flex-row w-full items-center mb-4 h-[60]">
@@ -28,7 +31,9 @@ const ForecastItem = ({ data, index }) => {
             <Text className="text-4xl text-white font-black">
               {data.daily.temperature_2m_max[index].toFixed(0)}
             </Text>
-            <Text className="text-2xl text-white font-bold relative bottom-[3]">&#0176;F</Text>
+            <Text className="text-2xl text-white font-bold relative bottom-[3]">
+              &#0176;{preferences.temperature_unit}
+            </Text>
           </View>
         </View>
       </View>
