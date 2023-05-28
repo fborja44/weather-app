@@ -22,9 +22,13 @@ Text.defaultProps.style = { fontFamily: "Inter" };
 const screenDimensions = Dimensions.get("screen");
 
 const Settings = () => {
-  const [selectedTemp, setSelectedTemp] = useState("f");
-  const [selectedWind, setSelectedWind] = useState("km");
-  const [selectedPrecipitation, setSelectedPrecipitation] = useState("mm");
+  const temp_prefix = "&temperature_unit=";
+  const wind_prefix = "&windspeed_unit=";
+  const precip_prefix = "&precipitation_unit=";
+
+  const [selectedTemp, setSelectedTemp] = useState("C");
+  const [selectedWind, setSelectedWind] = useState("Km/h");
+  const [selectedPrecipitation, setSelectedPrecipitation] = useState("in");
 
   return (
     <SafeAreaView className="flex flex-1">
@@ -77,10 +81,10 @@ const Settings = () => {
             selectedValue={selectedWind}
             setSelectedValue={setSelectedWind}
           >
-            <Picker.Item label="Km/h" value="km" />
-            <Picker.Item label="m/s" value="m" />
-            <Picker.Item label="mph" value="mi" />
-            <Picker.Item label="Knots" value="knots" />
+            <Picker.Item label="Km/h" value="Km/h" />
+            <Picker.Item label="m/s" value="m/s" />
+            <Picker.Item label="mph" value="mph" />
+            <Picker.Item label="Knots" value="kn" />
           </PreferenceSelect>
           <PreferenceSelect
             label="Precipitation Unit:"
@@ -90,8 +94,8 @@ const Settings = () => {
                 iconClass="w-5 h-5 relative top-[1]"
               />
             }
-            selectedValue={selectedWind}
-            setSelectedValue={setSelectedWind}
+            selectedValue={selectedPrecipitation}
+            setSelectedValue={setSelectedPrecipitation}
           >
             <Picker.Item label="Millimeters" value="mm" />
             <Picker.Item label="Inches" value="in" />

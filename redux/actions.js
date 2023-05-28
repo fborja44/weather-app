@@ -22,3 +22,12 @@ export const setLocationAction = async (dispatch, city) => {
     alert(error);
   }
 };
+
+/* Preferences
+/***********************************/
+export const setPreference = async (dispatch, key, value) => {
+  dispatch({
+    type: "SET_PREFERENCE",
+    payload: { key: value },
+  });
+};
