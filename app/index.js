@@ -8,7 +8,6 @@ import {
   Text,
   SafeAreaView,
   Dimensions,
-  ScrollView,
   TouchableOpacity,
 } from "react-native";
 import { Stack } from "expo-router";
@@ -75,12 +74,12 @@ const Home = () => {
           headerRight: () => <LocationButton />,
         }}
       />
-      <ScrollView
+      <View
         showsVerticalScrollIndicator={false}
-        className="flex mt-[135] w-full h-full mb-[65]"
+        className="flex mt-[130] w-full h-full mb-[65]"
       >
         {!isLoading && !error && <HomeWeather data={data} />}
-      </ScrollView>
+      </View>
     </SafeAreaView>
   );
 };

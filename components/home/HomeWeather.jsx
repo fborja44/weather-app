@@ -1,13 +1,13 @@
 import React from "react";
 
-import { View, Text } from "react-native";
-import RainIcon from "../../assets/icons/weather/RainIcon";
+import { View, Text, ScrollView } from "react-native";
 import InfoTable from "./InfoTable";
 import Message from "./Message";
 import Hourly from "./Hourly";
 import { convertWeatherCodeToString } from "../../utils/weather";
 import { getCurrentHour } from "../../utils/date";
 import { useSelector } from "react-redux";
+import { WeatherIcon } from "../../utils/weather";
 
 const HomeWeather = ({ data }) => {
   const hour = getCurrentHour();
@@ -16,8 +16,8 @@ const HomeWeather = ({ data }) => {
   if (data.current_weather) {
     return (
       <View className="flex items-center justify-center w-full flex-1">
-        <View>
-          <RainIcon />
+        <View className="h-60">
+          <WeatherIcon weatherCode={3} iconClass="w-72 h-56" />
         </View>
         <View className="flex flex-row justify-between w-2/3 mt-4 h-20 px-4 ">
           <View>
@@ -42,8 +42,10 @@ const HomeWeather = ({ data }) => {
           </View>
         </View>
         <InfoTable data={data} />
-        <Message data={data} />
-        <Hourly data={data} />
+        <ScrollView className="pr-1">
+          <Message data={data} />
+          <Hourly data={data} />
+        </ScrollView>
       </View>
     );
   } else {

@@ -14,7 +14,7 @@ import PreferenceSelect from "../components/settings/PreferenceSelect";
 import TemperatureIcon from "../assets/icons/TemperatureIcon";
 import { Picker } from "@react-native-picker/picker";
 import WindIcon from "../assets/icons/stats/WindIcon";
-import RainIcon from "../assets/icons/stats/RainIcon";
+import RainIcon from "../assets/icons/weather/RainIcon";
 
 import { useSelector } from "react-redux";
 

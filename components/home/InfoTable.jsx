@@ -1,6 +1,6 @@
 import { View, Text } from "react-native";
 import HumidityIcon from "../../assets/icons/stats/HumidityIcon";
-import RainIcon from "../../assets/icons/stats/RainIcon";
+import RainIcon from "../../assets/icons/weather/RainIcon";
 import BarometerIcon from "../../assets/icons/stats/BarometerIcon";
 import WindIcon from "../../assets/icons/stats/WindIcon";
 import { convertHPAToInHg } from "../../utils/pressure";
