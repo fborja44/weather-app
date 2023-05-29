@@ -8,6 +8,7 @@ import { convertWeatherCodeToString } from "../../utils/weather";
 import { getCurrentHour } from "../../utils/date";
 import { useSelector } from "react-redux";
 import { WeatherIcon } from "../../utils/weather";
+import Precipitation from "./Precipitation";
 
 const HomeWeather = ({ data }) => {
   const hour = getCurrentHour();
@@ -42,9 +43,14 @@ const HomeWeather = ({ data }) => {
           </View>
         </View>
         <InfoTable data={data} />
-        <ScrollView className="pr-1">
+        <ScrollView
+          className="pr-1 h-[35]"
+          contentContainerStyle={{ paddingBottom: 195}}
+          showsVerticalScrollIndicator={false}
+        >
           <Message data={data} />
           <Hourly data={data} />
+          <Precipitation data={data} />
         </ScrollView>
       </View>
     );
