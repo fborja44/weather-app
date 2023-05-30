@@ -35,7 +35,8 @@ const Forecast = () => {
   const { data, isLoading, error, refetch } = useFetch(
     buildEndpoint(
       "forecast?&daily=weathercode,temperature_2m_max&timeformat=unixtime&forecast_days=14&timezone=America%2FNew_York",
-      preferences
+      preferences,
+      location.timezone
     ),
     location
   );

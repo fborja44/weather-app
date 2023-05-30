@@ -1,4 +1,4 @@
-export const buildEndpoint = (base, preferences) => {
+export const buildEndpoint = (base, preferences, timezone) => {
   let temperature_query;
   switch (preferences.temperature_unit) {
     case "C":
@@ -42,6 +42,10 @@ export const buildEndpoint = (base, preferences) => {
       break;
   }
   const endpoint =
-    base + temperature_query + windspeed_query + precipitation_query;
+    base +
+    temperature_query +
+    windspeed_query +
+    precipitation_query +
+    `&timezone=${timezone}`;
   return endpoint;
 };

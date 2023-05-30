@@ -5,6 +5,7 @@ import SunIcon from "../../assets/icons/SunIcon";
 import { getDayOfWeek } from "../../utils/date";
 import { convertWeatherCodeToString } from "../../utils/weather";
 import { useSelector } from "react-redux";
+import { HourlyIcon } from "../../utils/weather";
 
 Text.defaultProps = Text.defaultProps || {};
 Text.defaultProps.style = { fontFamily: "Inter" };
@@ -21,7 +22,10 @@ const ForecastItem = ({ data, index }) => {
           </Text>
         </View>
         <View className="flex flex-1 flex-row items-center">
-          <SunIcon filled color="#FFA630" iconClass="w-8 h-8 mr-1.5" />
+          <HourlyIcon
+            weatherCode={data.daily.weathercode[index]}
+            iconClass="w-8 h-8 mr-1.5"
+          />
           <Text className="text-white font-primary capitalize">
             {convertWeatherCodeToString(data.daily.weathercode[index])}
           </Text>

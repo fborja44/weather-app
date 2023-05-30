@@ -13,6 +13,7 @@ import Precipitation from "./Precipitation";
 const HomeWeather = ({ data }) => {
   const hour = getCurrentHour();
   const preferences = useSelector((state) => state.preferencesState);
+  const location = useSelector((state) => state.locationState);
 
   if (data.current_weather) {
     return (
@@ -52,8 +53,8 @@ const HomeWeather = ({ data }) => {
           showsVerticalScrollIndicator={false}
         >
           <Message data={data} />
-          <Hourly data={data} />
-          <Precipitation data={data} />
+          <Hourly data={data} timezone={location.timezone} />
+          <Precipitation data={data} timezone={location.timezone} />
         </ScrollView>
       </View>
     );
