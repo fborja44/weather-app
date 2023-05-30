@@ -18,9 +18,12 @@ const HomeWeather = ({ data }) => {
     return (
       <View className="flex items-center justify-center w-full flex-1">
         <View className="h-60">
-          <WeatherIcon weatherCode={3} iconClass="w-72 h-56" />
+          <WeatherIcon
+            weatherCode={data.current_weather.weathercode}
+            iconClass="w-72 h-56"
+          />
         </View>
-        <View className="flex flex-row justify-between w-2/3 mt-4 h-20 px-4 ">
+        <View className="flex flex-row justify-between w-2/3 mt-2 h-20 px-4 ">
           <View>
             <View className="flex flex-row">
               <Text className="text-7xl text-white font-black">
@@ -45,7 +48,7 @@ const HomeWeather = ({ data }) => {
         <InfoTable data={data} />
         <ScrollView
           className="pr-1 h-[35]"
-          contentContainerStyle={{ paddingBottom: 195}}
+          contentContainerStyle={{ paddingBottom: 195 }}
           showsVerticalScrollIndicator={false}
         >
           <Message data={data} />

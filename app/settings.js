@@ -30,7 +30,7 @@ const Settings = () => {
     <SafeAreaView className="flex flex-1">
       <LinearGradient
         colors={["#2B2543", "#788AA0", "#BBC4CF", "#FFFFFF"]}
-        locations={[0, 0.5, 0.65, 0.8]}
+        locations={[0, 0.5, 0.7, 0.85]}
         style={styles.background}
       />
       <Stack.Screen

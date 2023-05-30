@@ -13,7 +13,7 @@ const messages = {
 
 const Message = () => {
   return (
-    <View className="box-border px-4 py-6">
+    <View className="box-border px-4 pt-4 pb-4">
       <View className="bg-white h-[82] w-full rounded-2xl box-border px-3 py-[18] flex flex-row justify-between items-center shadow-xl">
         <UmbrellaIcon
           color="#F17720"
