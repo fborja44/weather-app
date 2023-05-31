@@ -7,7 +7,6 @@ import ListContainer from "./ListContainer";
 const HourlyItem = ({ data, index, timezone }) => {
   const hour = getCurrentHour();
   const last = index === hour + 23;
-  console.log(data.hourly.weathercode[index]);
   if (data) {
     return (
       <ListItemContainer last={last}>

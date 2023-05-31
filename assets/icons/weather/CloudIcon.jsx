@@ -21,8 +21,7 @@ const CloudIcon = ({ filled, color, iconClass }) => {
           gradientUnits="userSpaceOnUse"
           gradientTransform="translate(28.8 2.0625) rotate(128.085) scale(48.9139 52.0411)"
         >
-          <Stop stopColor="white" />
-          <Stop offset="0.177083" stopColor="#F2F3F9" />
+          <Stop stopColor="#F2F3F9" />
           <Stop offset="0.34611" stopColor="#EAECF6" />
           <Stop offset="0.823755" stopColor="#C2C9EC" />
         </RadialGradient>

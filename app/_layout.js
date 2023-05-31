@@ -4,7 +4,8 @@ import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
 import Footer from "../components/footer/Footer";
 import { Provider as ReduxProvider } from "react-redux";
-import store from "../redux/store";
+import { store, persistor } from "../redux/store";
+import { PersistGate } from "redux-persist/integration/react";
 import { StatusBar } from "react-native";
 
 SplashScreen.preventAutoHideAsync(); // Show splash screen while app is loading
@@ -25,9 +26,11 @@ const Layout = () => {
   }
   return (
     <ReduxProvider store={store} hidden>
-      <StatusBar barStyle="light-content" />
-      <Stack onLayout={onLayoutRootView} />
-      <Footer />
+      <PersistGate loading={null} persistor={persistor}>
+        <StatusBar barStyle="light-content" />
+        <Stack onLayout={onLayoutRootView} />
+        <Footer />
+      </PersistGate>
     </ReduxProvider>
   );
 };
