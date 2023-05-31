@@ -27,4 +27,8 @@ const SunnyIcon = ({ iconClass }) => {
   );
 };
 
+SunnyIcon.defaultProps = {
+  iconClass: "w-5 h-5",
+};
+
 export default SunnyIcon;

@@ -5,7 +5,8 @@ import ListItemContainer from "./ListItemContainer";
 import ListContainer from "./ListContainer";
 
 const PrecipitationItem = ({ data, index, timezone }) => {
-  const last = index === getCurrentHour() + 23;
+  const hour = getCurrentHour();
+  const last = index === hour + 23;
   if (data) {
     return (
       <ListItemContainer last={last}>
@@ -34,17 +35,16 @@ const PrecipitationItem = ({ data, index, timezone }) => {
 };
 
 const Precipitation = ({ data, timezone }) => {
+  const hour = getCurrentHour();
+
   if (data) {
-    const timeArray = data.hourly.time.slice(
-      getCurrentHour(),
-      24 + getCurrentHour()
-    );
+    const timeArray = data.hourly.time.slice(hour, 24 + hour);
     return (
       <ListContainer>
         {timeArray.map((_, index) => (
           <PrecipitationItem
             data={data}
-            index={index + getCurrentHour()}
+            index={index + hour}
             key={`hourly-${index}`}
             timezone={timezone}
           />

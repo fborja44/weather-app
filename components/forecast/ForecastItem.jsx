@@ -15,23 +15,23 @@ const ForecastItem = ({ data, index }) => {
 
   if (data) {
     return (
-      <View className="flex flex-row w-full items-center mb-4 h-[60]">
+      <View className="flex flex-row w-full items-center justify-between mb-4 h-[60]">
         <View className="w-2/5">
-          <Text className="text-white font-secondary text-base">
+          <Text className="text-white font-secondary text-sm">
             {index === 0 ? "Today" : getDayOfWeek(data.daily.time[index])}
           </Text>
         </View>
         <View className="flex flex-1 flex-row items-center">
           <HourlyIcon
             weatherCode={data.daily.weathercode[index]}
-            iconClass="w-8 h-8 mr-1.5"
+            iconClass="w-8 h-8 mr-3"
           />
-          <Text className="text-white font-primary capitalize">
+          <Text className="text-white font-primary capitalize text-sm">
             {convertWeatherCodeToString(data.daily.weathercode[index])}
           </Text>
         </View>
         <View className="flex-1 items-end">
-          <View className="flex flex-row mt-4">
+          <View className="flex flex-row mt-4 pl-5">
             <Text className="text-4xl text-white font-black">
               {data.daily.temperature_2m_max[index].toFixed(0)}
             </Text>

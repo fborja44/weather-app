@@ -49,7 +49,7 @@ const Forecast = () => {
     <SafeAreaView className="flex flex-1">
       <LinearGradient
         colors={["#4800E1", "#D962EC", "#F8C1D5", "#FFFFFF"]}
-        locations={[0, 0.62, 0.77, 0.88]}
+        locations={[0, 0.62, 0.77, 0.90]}
         style={styles.background}
       />
       <Stack.Screen

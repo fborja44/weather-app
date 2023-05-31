@@ -1,5 +1,12 @@
 import { useState, useEffect } from "react";
-import { StyleSheet, SafeAreaView, StatusBar, Text, View } from "react-native";
+import {
+  StyleSheet,
+  SafeAreaView,
+  StatusBar,
+  Text,
+  View,
+  ActivityIndicator,
+} from "react-native";
 import { Stack } from "expo-router";
 import SearchBar from "../components/search/SearchBar";
 import SearchItem from "../components/search/SearchItem";
@@ -46,10 +53,15 @@ const Search = () => {
           headerShown: false,
         }}
       />
-      <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} setIsLoading={setIsLoading} />
-      {searchTerm.trim() && searchResults.map((data, index) => (
-        <SearchItem data={data} key={`${searchTerm}-${index}`} />
-      ))}
+      <SearchBar
+        searchTerm={searchTerm}
+        setSearchTerm={setSearchTerm}
+        setIsLoading={setIsLoading}
+      />
+      {searchTerm.trim() &&
+        searchResults.map((data, index) => (
+          <SearchItem data={data} key={`${searchTerm}-${index}`} />
+        ))}
       {!isLoading && searchResults.length === 0 && searchTerm.length > 0 && (
         <View className="px-4 py-4">
           <Text className="font-secondary text-base text-slate-500">
@@ -57,6 +69,7 @@ const Search = () => {
           </Text>
         </View>
       )}
+      {isLoading && <ActivityIndicator color="#F17720" size="large" className="pt-6" />}
     </SafeAreaView>
   );
 };

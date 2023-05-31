@@ -24,6 +24,8 @@ export const convertWeatherCodeToString = (weatherCode) => {
     1: "Mostly clear",
     2: "Partly cloudy",
     3: "Overcast",
+    45: "Fog",
+    48: "Frozen Fog",
     51: "Light drizzle",
     53: "Moderate drizzle",
     55: "Heavy drizzle",
@@ -60,6 +62,8 @@ export const WeatherIcon = ({ weatherCode, iconClass }) => {
     return <PartlyCloudyIcon iconClass={iconClass} />;
   } else if (weatherCode === 3) {
     return <CloudyIcon iconClass={iconClass} />;
+  } else if (weatherCode >= 45 && weatherCode <= 48) {
+    return <FoggyIcon iconClass={iconClass} />;
   } else if (weatherCode >= 51 && weatherCode <= 57) {
     return <DrizzleIcon iconClass={iconClass} />;
   } else if (weatherCode >= 61 && weatherCode <= 67) {
@@ -86,6 +90,8 @@ export const HourlyIcon = ({ weatherCode, iconClass }) => {
     return <SunCloudIcon iconClass={iconClass} />;
   } else if (weatherCode === 3) {
     return <CloudIcon iconClass={iconClass} color="#EAECF6" filled />;
+  } else if (weatherCode >= 45 && weatherCode <= 48) {
+    return <FoggyIcon iconClass={iconClass} />;
   } else if (
     (weatherCode >= 51 && weatherCode <= 67) ||
     (weatherCode >= 80 && weatherCode <= 82)
