@@ -81,7 +81,7 @@ export const WeatherIcon = ({ weatherCode, iconClass }) => {
 
 export const HourlyIcon = ({ weatherCode, iconClass }) => {
   if (weatherCode === 0 || weatherCode === 1) {
-    return <SunnyIcon iconClass={iconClass} color="#FFA630" filled />;
+    return <SunnyIcon iconClass={iconClass} />;
   } else if (weatherCode === 2) {
     return <SunCloudIcon iconClass={iconClass} />;
   } else if (weatherCode === 3) {
@@ -90,7 +90,7 @@ export const HourlyIcon = ({ weatherCode, iconClass }) => {
     (weatherCode >= 51 && weatherCode <= 67) ||
     (weatherCode >= 80 && weatherCode <= 82)
   ) {
-    return <RainIcon iconClass={iconClass} color="#00A7E1" />;
+    return <RainIcon iconClass={iconClass} gradient />;
   } else if (weatherCode >= 71 && weatherCode <= 86) {
     return <SnowIcon iconClass={iconClass} color="#4EBFFF" />;
   } else if (weatherCode >= 95 && weatherCode <= 99) {

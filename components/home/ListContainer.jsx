@@ -7,7 +7,7 @@ const ListContainer = ({ children }) => {
       horizontal
       showsHorizontalScrollIndicator={false}
     >
-      <View className="mx-4 pb-4">
+      <View className="mx-4 pb-5">
         <View className="flex flex-row bg-white h-[78] rounded-full min-w-full px-4 box-border self-start shadow-xl items-center">
           {children}
         </View>

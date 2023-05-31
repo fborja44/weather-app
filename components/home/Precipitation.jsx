@@ -1,11 +1,11 @@
 import { View, Text, ScrollView } from "react-native";
-import { parseUnixTime } from "../../utils/date";
+import { getCurrentHour, parseUnixTime } from "../../utils/date";
 import RaindropIcon from "../../assets/icons/weather/RaindropIcon";
 import ListItemContainer from "./ListItemContainer";
 import ListContainer from "./ListContainer";
 
 const PrecipitationItem = ({ data, index, timezone }) => {
-  const last = index === data.hourly.time.length - 1;
+  const last = index === getCurrentHour() + 23;
   if (data) {
     return (
       <ListItemContainer last={last}>
@@ -35,12 +35,16 @@ const PrecipitationItem = ({ data, index, timezone }) => {
 
 const Precipitation = ({ data, timezone }) => {
   if (data) {
+    const timeArray = data.hourly.time.slice(
+      getCurrentHour(),
+      24 + getCurrentHour()
+    );
     return (
       <ListContainer>
-        {data.hourly.time.map((_, index) => (
+        {timeArray.map((_, index) => (
           <PrecipitationItem
             data={data}
-            index={index}
+            index={index + getCurrentHour()}
             key={`hourly-${index}`}
             timezone={timezone}
           />

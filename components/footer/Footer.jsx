@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import { View, Text, TouchableOpacity, Image, Linking } from "react-native";
+import { View } from "react-native";
 import HomeIcon from "../../assets/icons/HomeIcon";
 import SunIcon from "../../assets/icons/SunIcon";
 import SettingsIcon from "../../assets/icons/SettingsIcon";

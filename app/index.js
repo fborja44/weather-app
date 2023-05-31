@@ -35,7 +35,7 @@ const Home = () => {
 
   const { data, isLoading, error, refetch } = useFetch(
     buildEndpoint(
-      "forecast?&hourly=temperature_2m,relativehumidity_2m,precipitation,is_day,apparent_temperature,precipitation_probability,weathercode,surface_pressure,visibility,windspeed_10m&current_weather=true&timeformat=unixtime&forecast_days=1",
+      "forecast?&hourly=temperature_2m,relativehumidity_2m,precipitation,is_day,apparent_temperature,precipitation_probability,weathercode,surface_pressure,visibility,windspeed_10m&current_weather=true&timeformat=unixtime&forecast_days=3",
       preferences,
       location.timezone
     ),
@@ -64,7 +64,7 @@ const Home = () => {
                 {getCurrentDate()}
               </Text>
               <TouchableOpacity
-                className="flex flex-row relative bottom-[2]"
+                className="flex flex-row"
                 onPress={() => router.push("/forecast")}
               >
                 <CalendarIcon />

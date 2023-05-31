@@ -13,13 +13,13 @@ const messages = {
 
 const Message = () => {
   return (
-    <View className="box-border px-4 pt-4 pb-4">
-      <View className="bg-white h-[82] w-full rounded-2xl box-border px-3 py-[18] flex flex-row justify-between items-center shadow-xl">
+    <View className="box-border px-4 py-5">
+      <View className="bg-white h-[75] w-full rounded-2xl box-border px-3 py-[18] flex flex-row justify-between items-center shadow-xl">
         <UmbrellaIcon
           color="#F17720"
           iconClass="w-12 h-12 -rotate-12 relative left-[6]"
         />
-        <View className="flex justify-between h-full px-3">
+        <View className="flex justify-between h-[75] px-3 py-3.5">
           <Text className="text-slate-600 font-bold">It's raining!</Text>
           <Text className="text-slate-500">
             Be sure to bring an umbrella outside!

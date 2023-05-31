@@ -63,7 +63,7 @@ const Forecast = () => {
                 {getCurrentDate()}
               </Text>
               <TouchableOpacity
-                className="flex flex-row relative bottom-[2]"
+                className="flex flex-row"
                 onPress={() => router.back()}
               >
                 <BackIcon color="white" iconClass="w-5 h-5 mr-2" />
