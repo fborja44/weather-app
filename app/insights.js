@@ -9,6 +9,7 @@ import RadialBackground from "../components/insights/RadialBackground";
 import useFetch from "../hook/useFetch";
 import InsightsWeather from "../components/insights/InsightsWeather";
 import LocationButton from "../components/common/LocationButton";
+import Loading from "../components/common/Loading";
 
 import { buildEndpoint } from "../utils/endpoint";
 
@@ -50,9 +51,12 @@ const Insights = () => {
           headerRight: () => <LocationButton />,
         }}
       />
-      <View className="flex flex-1 mt-[135] w-full mb-[65]">
-        <InsightsWeather data={data} />
-      </View>
+      {!isLoading && !error && (
+        <View className="flex flex-1 mt-[135] w-full mb-[65]">
+          <InsightsWeather data={data} />
+        </View>
+      )}
+      {isLoading && <Loading />}
     </SafeAreaView>
   );
 };

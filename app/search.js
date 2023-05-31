@@ -69,7 +69,7 @@ const Search = () => {
           </Text>
         </View>
       )}
-      {isLoading && <ActivityIndicator color="#F17720" size="large" className="pt-6" />}
+      {isLoading && <ActivityIndicator color="#F17720" size="large" className="pt-8" />}
     </SafeAreaView>
   );
 };

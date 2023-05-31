@@ -16,6 +16,7 @@ import { getCurrentDate } from "../utils/date";
 import Footer from "../components/footer/Footer";
 import BackIcon from "../assets/icons/BackIcon";
 import ForecastWeather from "../components/forecast/ForecastWeather";
+import Loading from "../components/common/Loading";
 
 import useFetch from "../hook/useFetch";
 import LocationButton from "../components/common/LocationButton";
@@ -48,8 +49,8 @@ const Forecast = () => {
   return (
     <SafeAreaView className="flex flex-1">
       <LinearGradient
-        colors={["#4800E1", "#D962EC", "#F8C1D5", "#FFFFFF"]}
-        locations={[0, 0.62, 0.77, 0.90]}
+        colors={["#4800E1", "#D962EC", "#F8C1D5"]}
+        locations={[0, 0.5, 0.77]}
         style={styles.background}
       />
       <Stack.Screen
@@ -74,13 +75,15 @@ const Forecast = () => {
           headerRight: () => <LocationButton />,
         }}
       />
-      <ScrollView
-        showsVerticalScrollIndicator={false}
-        className="flex mt-[125] w-full px-4"
-      >
-        <ForecastWeather data={data} />
-      </ScrollView>
-      <Footer />
+      {!isLoading && !error && (
+        <ScrollView
+          showsVerticalScrollIndicator={false}
+          className="flex mt-[125] w-full px-4"
+        >
+          <ForecastWeather data={data} />
+        </ScrollView>
+      )}
+      {isLoading && <Loading />}
     </SafeAreaView>
   );
 };

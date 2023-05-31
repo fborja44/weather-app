@@ -10,7 +10,7 @@ const PreferenceSelect = ({ id, label, icon, selectedValue, children }) => {
 
   return (
     <View
-      className={`bg-white h-[60] w-full rounded-lg mb-5 flex flex-row items-center justify-between pl-${
+      className={`bg-white h-[60] w-full rounded-lg mb-6 flex flex-row items-center justify-between pl-${
         icon ? 4 : 5
       } pr-1`}
     >
