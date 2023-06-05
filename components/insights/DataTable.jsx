@@ -14,7 +14,7 @@ import CloudsIcon from "../../assets/icons/stats/CloudsIcon";
 import SunriseIcon from "../../assets/icons/stats/SunriseIcon";
 import SunsetIcon from "../../assets/icons/stats/SunsetIcon";
 import { convertDegreesToCardinal } from "../../utils/direction";
-import { getCurrentHour, parseUnixTime } from "../../utils/date";
+import { getCurrentHour, parseUnixTime, parseUnixTimeFull } from "../../utils/date";
 import { useSelector } from "react-redux";
 
 const DataTable = ({ data }) => {
@@ -72,13 +72,13 @@ const DataTable = ({ data }) => {
         <DataItem
           left
           label="Sunrise"
-          value={parseUnixTime(data.daily.sunrise[0])}
+          value={parseUnixTimeFull(data.daily.sunrise[0])}
           icon={<SunriseIcon {...ICON_PROPS} />}
         />
         <DataDivider />
         <DataItem
           label="Sunset"
-          value={parseUnixTime(data.daily.sunset[0])}
+          value={parseUnixTimeFull(data.daily.sunset[0])}
           icon={<SunsetIcon {...ICON_PROPS} />}
         />
       </DataTableContainer>

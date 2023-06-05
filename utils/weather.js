@@ -15,8 +15,16 @@ import RainShowersIcon from "../assets/icons/weather/RainShowersIcon";
 import CloudIcon from "../assets/icons/weather/CloudIcon";
 import SunCloudIcon from "../assets/icons/weather/SunCloudIcon";
 import SnowIcon from "../assets/icons/weather/SnowIcon";
-import LightningIcon from "../assets/icons/weather/LightningIcon";
 import RainIcon from "../assets/icons/weather/RainIcon";
+
+import SmileIcon from "../assets/icons/message/SmileIcon";
+import UmbrellaIcon from "../assets/icons/message/UmbrellaIcon";
+import LightningIcon from "../assets/icons/message/LightningIcon";
+import FreezingIcon from "../assets/icons/message/FreezingIcon";
+import HotIcon from "../assets/icons/message/HotIcon";
+import HighWindsIcon from "../assets/icons/message/HighWindsIcon";
+import HighUVIcon from "../assets/icons/message/HighUVIcon";
+import LowVisibilityIcon from "../assets/icons/message/LowVisibilityIcon";
 
 export const convertWeatherCodeToString = (weatherCode) => {
   const weatherCodes = {
@@ -57,51 +65,168 @@ export const convertWeatherCodeToString = (weatherCode) => {
 
 export const WeatherIcon = ({ weatherCode, iconClass }) => {
   if (weatherCode === 0 || weatherCode === 1) {
+    // Sunny
     return <SunnyIcon iconClass={iconClass} />;
   } else if (weatherCode === 2) {
+    // Partly Cloudy
     return <PartlyCloudyIcon iconClass={iconClass} />;
   } else if (weatherCode === 3) {
-    return <CloudyIcon iconClass={iconClass} />;
+    // Overcast
+    return <CloudIcon iconClass={iconClass} />;
   } else if (weatherCode >= 45 && weatherCode <= 48) {
+    // Foggy
     return <FoggyIcon iconClass={iconClass} />;
   } else if (weatherCode >= 51 && weatherCode <= 57) {
+    // Drizzle
     return <DrizzleIcon iconClass={iconClass} />;
   } else if (weatherCode >= 61 && weatherCode <= 67) {
+    // Rainy
     return <RainyIcon iconClass={iconClass} />;
   } else if (weatherCode >= 71 && weatherCode <= 77) {
+    // Snowy
     return <SnowyIcon iconClass={iconClass} />;
   } else if (weatherCode >= 80 && weatherCode <= 82) {
+    // Rain Showers
     return <RainShowersIcon iconClass={iconClass} />;
   } else if (weatherCode >= 83 && weatherCode <= 84) {
+    // Sleet
     return <SleetIcon iconClass={iconClass} />;
   } else if (weatherCode >= 85 && weatherCode <= 86) {
+    // Snow
     return <SnowyIcon iconClass={iconClass} />;
   } else if (weatherCode >= 95 && weatherCode <= 99) {
+    // Thunderstorms
     return <ThunderstormIcon iconClass={iconClass} />;
   } else {
+    // Missing
     return <InvalidIcon iconClass={iconClass} />;
   }
 };
 
 export const HourlyIcon = ({ weatherCode, iconClass }) => {
   if (weatherCode === 0 || weatherCode === 1) {
+    // Sunny
     return <SunnyIcon iconClass={iconClass} />;
   } else if (weatherCode === 2) {
-    return <SunCloudIcon iconClass={iconClass} />;
+    // Partly Cloudy
+    return <PartlyCloudyIcon iconClass={iconClass} />;
   } else if (weatherCode === 3) {
-    return <CloudIcon iconClass={iconClass} color="#EAECF6" filled />;
+    // Overcast
+    return <CloudIcon iconClass={iconClass} />;
   } else if (weatherCode >= 45 && weatherCode <= 48) {
+    // Foggy
     return <FoggyIcon iconClass={iconClass} />;
   } else if (
+    // Drizzle / Rainy
     (weatherCode >= 51 && weatherCode <= 67) ||
     (weatherCode >= 80 && weatherCode <= 82)
   ) {
     return <RainIcon iconClass={iconClass} gradient />;
-  } else if (weatherCode >= 71 && weatherCode <= 86) {
+  } else if (
+    (weatherCode >= 71 && weatherCode <= 77) ||
+    (weatherCode >= 83 && weatherCode <= 86)
+  ) {
+    // Sleet / Snow
     return <SnowIcon iconClass={iconClass} color="#4EBFFF" />;
   } else if (weatherCode >= 95 && weatherCode <= 99) {
-    return <LightningIcon iconClass={iconClass} />;
+    // Thunderstorms
+    return <ThunderstormIcon iconClass={iconClass} />;
   } else {
+    // Missing
     return <InvalidIcon iconClass={iconClass} />;
+  }
+};
+
+const MessageIconClass = "w-12 h-12 -rotate-12 relative left-[6]";
+
+export const messages = {
+  sunny: {
+    title: "Carpe diem!",
+    message: "Perfect day for outdoor activities!",
+    icon: <SmileIcon color="#F17720" iconClass={MessageIconClass} />,
+  },
+  partly: {
+    title: "A great day!",
+    message: "Mix of sun and clouds, pleasant weather expected.",
+    icon: <SmileIcon color="#F17720" iconClass={MessageIconClass} />,
+  },
+  overcast: {
+    title: "Cloudy overhead.",
+    message: "Overcast skies with limited sunshine.",
+    icon: <SmileIcon color="#F17720" iconClass={MessageIconClass} />,
+  },
+  rain: {
+    title: "Possible rain!",
+    message: "Rain likely, don't forget your umbrella!",
+    icon: <UmbrellaIcon color="#F17720" iconClass={MessageIconClass} />,
+  },
+  thunder: {
+    title: "Thunderstorm warning!",
+    message: "Stormy weather with lightning strikes.",
+    icon: <LightningIcon color="#F17720" iconClass={MessageIconClass} />,
+  },
+  freezing: {
+    title: "Freezing temperatures!",
+    message: "Possible icy conditions, use caution while traveling.",
+    icon: <FreezingIcon color="#F17720" iconClass={MessageIconClass} />,
+  },
+  snow: {
+    title: "Expected snow!",
+    message: "Be sure to use caution while traveling.",
+    icon: <FreezingIcon color="#F17720" iconClass={MessageIconClass} />,
+  },
+  hot: {
+    title: "Hot hot hot!",
+    message: "Extreme heat, stay hydrated and seek shade!",
+    icon: <HotIcon color="#F17720" iconClass={MessageIconClass} />,
+  },
+  windy: {
+    title: "Heavy winds!",
+    message: "Strong winds, stay cauious outdoors.",
+    icon: <WindyIcon color="#F17720" iconClass={MessageIconClass} />,
+  },
+  uv: {
+    title: "High UV warning!",
+    message: "Protect your skin, high UV today!",
+    icon: <HighUVIcon color="#F17720" iconClass={MessageIconClass} />,
+  },
+  foggy: {
+    title: "Low visibility!",
+    message: "It's foggy out! Drive carefully.",
+    icon: <LowVisibilityIcon color="#F17720" iconClass={MessageIconClass} />,
+  },
+};
+
+export const getMessage = (weatherCode, data) => {
+  if (weatherCode === 0 || weatherCode === 1) {
+    // Sunny
+    return messages.sunny;
+  } else if (weatherCode === 2) {
+    // Partly Cloudy
+    return messages.partly;
+  } else if (weatherCode === 3) {
+    // Overcast
+    return messages.overcast;
+  } else if (weatherCode >= 45 && weatherCode <= 48) {
+    // Foggy
+    return messages.foggy;
+  } else if (
+    (weatherCode >= 51 && weatherCode <= 67) ||
+    (weatherCode >= 80 && weatherCode <= 82)
+  ) {
+    // Drizzle / Rain
+    return messages.rain;
+  } else if (
+    (weatherCode >= 71 && weatherCode <= 77) ||
+    (weatherCode >= 83 && weatherCode <= 86)
+  ) {
+    // Sleet / Snow
+    return messages.snow;
+  } else if (weatherCode >= 95 && weatherCode <= 99) {
+    // Thunderstorms
+    return messages.thunder;
+  } else {
+    // Missing
+    return null;
   }
 };

@@ -7,12 +7,14 @@ import ListContainer from "./ListContainer";
 const PrecipitationItem = ({ data, index, timezone }) => {
   const hour = getCurrentHour();
   const last = index === hour + 23;
+  const probability = data.hourly.precipitation_probability[index];
   if (data) {
     return (
       <ListItemContainer last={last}>
         <View className="pl-0.5">
           <RaindropIcon
-            chance={data.hourly.precipitation_probability[index]}
+            chance={probability}
+            color={probability > 0 ? "#00A7E1" : "rgb(203 213 225)"}
             iconClass="w-6 h-7"
           />
         </View>
