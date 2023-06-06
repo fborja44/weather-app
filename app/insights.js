@@ -12,6 +12,7 @@ import LocationButton from "../components/common/LocationButton";
 import Loading from "../components/common/Loading";
 
 import { buildEndpoint } from "../utils/endpoint";
+import Error from "../components/common/Error";
 
 Text.defaultProps = Text.defaultProps || {};
 Text.defaultProps.style = { fontFamily: "Inter" };
@@ -57,6 +58,7 @@ const Insights = () => {
         </View>
       )}
       {isLoading && <Loading />}
+      {error && !isLoading && <Error refetch={refetch}/>}
     </SafeAreaView>
   );
 };

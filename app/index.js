@@ -23,6 +23,7 @@ import { useSelector } from "react-redux";
 import { useEffect } from "react";
 import { buildEndpoint } from "../utils/endpoint";
 import Loading from "../components/common/Loading";
+import Error from "../components/common/Error";
 
 Text.defaultProps = Text.defaultProps || {};
 Text.defaultProps.style = { fontFamily: "Inter" };
@@ -84,6 +85,7 @@ const Home = () => {
         </View>
       )}
       {isLoading && <Loading />}
+      {error && !isLoading && <Error refetch={refetch}/>}
     </SafeAreaView>
   );
 };

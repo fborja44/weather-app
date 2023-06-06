@@ -21,6 +21,7 @@ import Loading from "../components/common/Loading";
 import useFetch from "../hook/useFetch";
 import LocationButton from "../components/common/LocationButton";
 import { buildEndpoint } from "../utils/endpoint";
+import Error from "../components/common/Error";
 
 Text.defaultProps = Text.defaultProps || {};
 Text.defaultProps.style = { fontFamily: "Inter" };
@@ -84,6 +85,7 @@ const Forecast = () => {
         </ScrollView>
       )}
       {isLoading && <Loading />}
+      {error && !isLoading && <Error refetch={refetch}/>}
     </SafeAreaView>
   );
 };

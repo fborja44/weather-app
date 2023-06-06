@@ -65,11 +65,13 @@ const Search = () => {
       {!isLoading && searchResults.length === 0 && searchTerm.length > 0 && (
         <View className="px-4 py-4">
           <Text className="font-secondary text-base text-slate-500">
-            No Results Found
+            {!error ? " No Results Found" : "An error has occurred. "}
           </Text>
         </View>
       )}
-      {isLoading && <ActivityIndicator color="#F17720" size="large" className="pt-8" />}
+      {isLoading && (
+        <ActivityIndicator color="#F17720" size="large" className="pt-8" />
+      )}
     </SafeAreaView>
   );
 };
