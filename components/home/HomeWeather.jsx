@@ -9,6 +9,7 @@ import { getCurrentHour } from "../../utils/date";
 import { useSelector } from "react-redux";
 import { WeatherIcon } from "../../utils/weather";
 import Precipitation from "./Precipitation";
+import HomeWeatherIcon from "./HomeWeatherIcon";
 
 const HomeWeather = ({ data }) => {
   const hour = getCurrentHour();
@@ -18,12 +19,7 @@ const HomeWeather = ({ data }) => {
   if (data.current_weather) {
     return (
       <View className="flex items-center justify-center w-full flex-1">
-        <View className="h-60">
-          <WeatherIcon
-            weatherCode={data.current_weather.weathercode}
-            iconClass="w-72 h-56"
-          />
-        </View>
+        <HomeWeatherIcon weathercode={data.current_weather.weathercode} />
         <View className="flex flex-row justify-between w-2/3 mt-2 h-20 px-4 ">
           <View>
             <View className="flex flex-row">

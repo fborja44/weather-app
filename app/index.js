@@ -36,7 +36,7 @@ const Home = () => {
   const preferences = useSelector((state) => state.preferencesState);
   const { data, isLoading, error, refetch } = useFetch(
     buildEndpoint(
-      "forecast?&hourly=temperature_2m,relativehumidity_2m,precipitation,is_day,apparent_temperature,precipitation_probability,weathercode,surface_pressure,visibility,windspeed_10m&current_weather=true&timeformat=unixtime&forecast_days=3",
+      "forecast?&hourly=temperature_2m,relativehumidity_2m,precipitation,is_day,apparent_temperature,precipitation_probability,weathercode,surface_pressure,visibility,windspeed_10m&daily=uv_index_max&current_weather=true&timeformat=unixtime&forecast_days=3",
       preferences,
       location.timezone
     ),

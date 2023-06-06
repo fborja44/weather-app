@@ -25,6 +25,7 @@ import HotIcon from "../assets/icons/message/HotIcon";
 import HighWindsIcon from "../assets/icons/message/HighWindsIcon";
 import HighUVIcon from "../assets/icons/message/HighUVIcon";
 import LowVisibilityIcon from "../assets/icons/message/LowVisibilityIcon";
+import { getCurrentHour } from "./date";
 
 export const convertWeatherCodeToString = (weatherCode) => {
   const weatherCodes = {
@@ -137,7 +138,7 @@ export const HourlyIcon = ({ weatherCode, iconClass }) => {
   }
 };
 
-const MessageIconClass = "w-12 h-12 -rotate-12 relative left-[6]";
+const MessageIconClass = "w-10 h-10 -rotate-12 relative left-[6]";
 
 export const messages = {
   sunny: {
@@ -197,7 +198,34 @@ export const messages = {
   },
 };
 
-export const getMessage = (weatherCode, data) => {
+export const getMessage = (weatherCode, data, preferences) => {
+  const hour = getCurrentHour();
+
+  // Primary messages
+  if (data.hourly.visibility[hour] < 1000) {
+    // Low visibility
+    return messages.foggy;
+  } else if (data.daily.uv_index_max[0] >= 8) {
+    // High UV
+    return messages.uv;
+  }
+
+  // Temperature
+  if (preferences.temperature_unit === "C") {
+    if (data.current_weather.temperature >= 30) {
+      return messages.hot;
+    } else if (data.current_weather.temperature <= 0) {
+      return messages.freezing;
+    }
+  } else if (preferences.temperature_unit === "F") {
+    if (data.current_weather.temperature >= 90) {
+      return messages.hot;
+    } else if (data.current_weather.temperature <= 45) {
+      return messages.freezing;
+    }
+  }
+
+  // Weather codes
   if (weatherCode === 0 || weatherCode === 1) {
     // Sunny
     return messages.sunny;

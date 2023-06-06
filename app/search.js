@@ -28,7 +28,6 @@ const Search = () => {
     } catch (error) {
       setError(error);
       console.error(error);
-      alert("An error has ocurred. " + url);
     } finally {
       setIsLoading(false);
     }

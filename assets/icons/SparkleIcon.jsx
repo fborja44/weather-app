@@ -1,12 +1,12 @@
 import Svg, { Path } from "react-native-svg";
 
-const SparkleIcon = ({ color }) => {
+const SparkleIcon = ({ color, iconClass }) => {
   return (
     <Svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 24 24"
       fill={color}
-      className="w-10 h-10 rotate-12 transform -scale-x-100"
+      className={iconClass}
     >
       <Path
         fill-rule="evenodd"
@@ -16,5 +16,10 @@ const SparkleIcon = ({ color }) => {
     </Svg>
   );
 };
+
+SparkleIcon.defaultProps = {
+  color: "white",
+  iconClass: "w-6 h-6"
+}
 
 export default SparkleIcon;
