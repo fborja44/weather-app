@@ -1,6 +1,6 @@
 import Svg, { Path, Defs, RadialGradient, Stop } from "react-native-svg";
 
-const CloudIcon = ({ filled, color, iconClass }) => {
+const CloudIcon = ({ iconClass }) => {
   return (
     <Svg
       viewBox="0 0 48 33"
@@ -32,7 +32,6 @@ const CloudIcon = ({ filled, color, iconClass }) => {
 
 CloudIcon.defaultProps = {
   iconClass: "w-56 h-56",
-  color: "white",
 };
 
 export default CloudIcon;

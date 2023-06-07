@@ -1,7 +1,5 @@
 import DrizzleIcon from "../assets/icons/weather/DrizzleIcon";
-import CloudyIcon from "../assets/icons/weather/CloudyIcon";
 import FoggyIcon from "../assets/icons/weather/FoggyIcon";
-import HailIcon from "../assets/icons/weather/HailIcon";
 import MoonIcon from "../assets/icons/weather/MoonIcon";
 import PartlyCloudyIcon from "../assets/icons/weather/PartlyCloudyIcon";
 import RainyIcon from "../assets/icons/weather/RainyIcon";
@@ -13,9 +11,6 @@ import WindyIcon from "../assets/icons/weather/WindyIcon";
 import InvalidIcon from "../assets/icons/weather/InvalidIcon";
 import RainShowersIcon from "../assets/icons/weather/RainShowersIcon";
 import CloudIcon from "../assets/icons/weather/CloudIcon";
-import SunCloudIcon from "../assets/icons/weather/SunCloudIcon";
-import SnowIcon from "../assets/icons/weather/SnowIcon";
-import RainIcon from "../assets/icons/weather/RainIcon";
 
 import SmileIcon from "../assets/icons/message/SmileIcon";
 import UmbrellaIcon from "../assets/icons/message/UmbrellaIcon";
@@ -66,7 +61,7 @@ export const convertWeatherCodeToString = (weatherCode) => {
 
 export const WeatherIcon = ({ weatherCode, iconClass }) => {
   if (weatherCode === 0 || weatherCode === 1) {
-    // Sunny
+    // Clear
     return <SunnyIcon iconClass={iconClass} />;
   } else if (weatherCode === 2) {
     // Partly Cloudy
@@ -80,55 +75,18 @@ export const WeatherIcon = ({ weatherCode, iconClass }) => {
   } else if (weatherCode >= 51 && weatherCode <= 57) {
     // Drizzle
     return <DrizzleIcon iconClass={iconClass} />;
-  } else if (weatherCode >= 61 && weatherCode <= 67) {
-    // Rainy
+  } else if ((weatherCode >= 61 && weatherCode <= 67) || (weatherCode >= 80 && weatherCode <= 82)) {
+    // Rainy/Showers
     return <RainyIcon iconClass={iconClass} />;
   } else if (weatherCode >= 71 && weatherCode <= 77) {
     // Snowy
     return <SnowyIcon iconClass={iconClass} />;
-  } else if (weatherCode >= 80 && weatherCode <= 82) {
-    // Rain Showers
-    return <RainShowersIcon iconClass={iconClass} />;
   } else if (weatherCode >= 83 && weatherCode <= 84) {
     // Sleet
     return <SleetIcon iconClass={iconClass} />;
   } else if (weatherCode >= 85 && weatherCode <= 86) {
     // Snow
     return <SnowyIcon iconClass={iconClass} />;
-  } else if (weatherCode >= 95 && weatherCode <= 99) {
-    // Thunderstorms
-    return <ThunderstormIcon iconClass={iconClass} />;
-  } else {
-    // Missing
-    return <InvalidIcon iconClass={iconClass} />;
-  }
-};
-
-export const HourlyIcon = ({ weatherCode, iconClass }) => {
-  if (weatherCode === 0 || weatherCode === 1) {
-    // Sunny
-    return <SunnyIcon iconClass={iconClass} />;
-  } else if (weatherCode === 2) {
-    // Partly Cloudy
-    return <PartlyCloudyIcon iconClass={iconClass} />;
-  } else if (weatherCode === 3) {
-    // Overcast
-    return <CloudIcon iconClass={iconClass} />;
-  } else if (weatherCode >= 45 && weatherCode <= 48) {
-    // Foggy
-    return <FoggyIcon iconClass={iconClass} />;
-  } else if (
-    // Drizzle / Rainy
-    (weatherCode >= 51 && weatherCode <= 67) ||
-    (weatherCode >= 80 && weatherCode <= 82)
-  ) {
-    return <RainIcon iconClass={iconClass} gradient />;
-  } else if (
-    (weatherCode >= 71 && weatherCode <= 77) ||
-    (weatherCode >= 83 && weatherCode <= 86)
-  ) {
-    // Sleet / Snow
-    return <SnowIcon iconClass={iconClass} color="#4EBFFF" />;
   } else if (weatherCode >= 95 && weatherCode <= 99) {
     // Thunderstorms
     return <ThunderstormIcon iconClass={iconClass} />;
@@ -225,9 +183,11 @@ export const getMessage = (weatherCode, data, preferences) => {
     }
   }
 
+  // TODO: Heavy winds
+
   // Weather codes
   if (weatherCode === 0 || weatherCode === 1) {
-    // Sunny
+    // Clear
     return messages.sunny;
   } else if (weatherCode === 2) {
     // Partly Cloudy

@@ -1,6 +1,6 @@
 import { View, Text, ScrollView } from "react-native";
 import { getCurrentHour, parseUnixTime } from "../../utils/date";
-import { HourlyIcon } from "../../utils/weather";
+import { WeatherIcon } from "../../utils/weather";
 import ListItemContainer from "./ListItemContainer";
 import ListContainer from "./ListContainer";
 
@@ -11,7 +11,7 @@ const HourlyItem = ({ data, index, timezone }) => {
     return (
       <ListItemContainer last={last}>
         <View>
-          <HourlyIcon
+          <WeatherIcon
             weatherCode={data.hourly.weathercode[index]}
             iconClass="w-9 h-9"
           />
