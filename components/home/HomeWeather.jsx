@@ -12,14 +12,14 @@ import Precipitation from "./Precipitation";
 import HomeWeatherIcon from "./HomeWeatherIcon";
 
 const HomeWeather = ({ data }) => {
-  const hour = getCurrentHour();
+  const hour = getCurrentHour(data.timezone);
   const preferences = useSelector((state) => state.preferencesState);
   const location = useSelector((state) => state.locationState);
 
   if (data.current_weather) {
     return (
       <View className="flex items-center justify-center w-full flex-1">
-        <HomeWeatherIcon weathercode={data.current_weather.weathercode} />
+        <HomeWeatherIcon data={data} />
         <View className="flex flex-row justify-between w-2/3 mt-2 h-20 px-4 ">
           <View>
             <View className="flex flex-row">

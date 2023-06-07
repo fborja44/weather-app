@@ -1,7 +1,7 @@
 import DrizzleIcon from "../assets/icons/weather/DrizzleIcon";
 import FoggyIcon from "../assets/icons/weather/FoggyIcon";
 import MoonIcon from "../assets/icons/weather/MoonIcon";
-import PartlyCloudyIcon from "../assets/icons/weather/PartlyCloudyIcon";
+import PartlyCloudySunIcon from "../assets/icons/weather/PartlyCloudySunIcon";
 import RainyIcon from "../assets/icons/weather/RainyIcon";
 import SleetIcon from "../assets/icons/weather/SleetIcon";
 import SnowyIcon from "../assets/icons/weather/SnowyIcon";
@@ -9,7 +9,6 @@ import SunnyIcon from "../assets/icons/weather/SunnyIcon";
 import ThunderstormIcon from "../assets/icons/weather/ThunderstormIcon";
 import WindyIcon from "../assets/icons/weather/WindyIcon";
 import InvalidIcon from "../assets/icons/weather/InvalidIcon";
-import RainShowersIcon from "../assets/icons/weather/RainShowersIcon";
 import CloudIcon from "../assets/icons/weather/CloudIcon";
 
 import SmileIcon from "../assets/icons/message/SmileIcon";
@@ -20,7 +19,8 @@ import HotIcon from "../assets/icons/message/HotIcon";
 import HighWindsIcon from "../assets/icons/message/HighWindsIcon";
 import HighUVIcon from "../assets/icons/message/HighUVIcon";
 import LowVisibilityIcon from "../assets/icons/message/LowVisibilityIcon";
-import { getCurrentHour } from "./date";
+import { getCurrentHour, getHourTimezone } from "./date";
+import PartlyCloudyMoonIcon from "../assets/icons/weather/PartlyCloudyMoonIcon";
 
 export const convertWeatherCodeToString = (weatherCode) => {
   const weatherCodes = {
@@ -59,13 +59,35 @@ export const convertWeatherCodeToString = (weatherCode) => {
   return weatherCodes[weatherCode] || "Unknown";
 };
 
-export const WeatherIcon = ({ weatherCode, iconClass }) => {
+export const WeatherIcon = ({
+  weatherCode,
+  iconClass,
+  timezone,
+  time,
+  sunrise,
+  sunset,
+  day,
+}) => {
+  const hour = getHourTimezone(time, timezone);
+  const sunriseHour = getHourTimezone(sunrise, timezone);
+  const sunsetHour = getHourTimezone(sunset, timezone);
+
+  const is_day = (hour > sunriseHour && hour < sunsetHour) || day;
+
   if (weatherCode === 0 || weatherCode === 1) {
     // Clear
-    return <SunnyIcon iconClass={iconClass} />;
+    return is_day ? (
+      <SunnyIcon iconClass={iconClass} />
+    ) : (
+      <MoonIcon iconClass={iconClass} />
+    );
   } else if (weatherCode === 2) {
     // Partly Cloudy
-    return <PartlyCloudyIcon iconClass={iconClass} />;
+    return is_day ? (
+      <PartlyCloudySunIcon iconClass={iconClass} />
+    ) : (
+      <PartlyCloudyMoonIcon iconClass={iconClass} />
+    );
   } else if (weatherCode === 3) {
     // Overcast
     return <CloudIcon iconClass={iconClass} />;
@@ -75,7 +97,10 @@ export const WeatherIcon = ({ weatherCode, iconClass }) => {
   } else if (weatherCode >= 51 && weatherCode <= 57) {
     // Drizzle
     return <DrizzleIcon iconClass={iconClass} />;
-  } else if ((weatherCode >= 61 && weatherCode <= 67) || (weatherCode >= 80 && weatherCode <= 82)) {
+  } else if (
+    (weatherCode >= 61 && weatherCode <= 67) ||
+    (weatherCode >= 80 && weatherCode <= 82)
+  ) {
     // Rainy/Showers
     return <RainyIcon iconClass={iconClass} />;
   } else if (weatherCode >= 71 && weatherCode <= 77) {

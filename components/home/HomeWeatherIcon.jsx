@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from "react";
 import { View, Animated } from "react-native";
 import { WeatherIcon } from "../../utils/weather";
 
-const HomeWeatherIcon = ({ weathercode }) => {
+const HomeWeatherIcon = ({ data }) => {
   const positionY = useRef(new Animated.Value(0)).current;
   useEffect(() => {
     const moveAnimation = Animated.loop(
@@ -30,7 +30,14 @@ const HomeWeatherIcon = ({ weathercode }) => {
   return (
     <View className="h-60 relative top-[6]">
       <Animated.View style={{ transform: [{ translateY: positionY }] }}>
-        <WeatherIcon weatherCode={weathercode} iconClass="w-72 h-56" />
+        <WeatherIcon
+          weatherCode={data.current_weather.weathercode}
+          iconClass="w-72 h-56"
+          timezone={data.timezone}
+          time={Math.floor(Date.now() / 1000)}
+          sunrise={data.daily.sunrise[0]}
+          sunset={data.daily.sunset[0]}
+        />
       </Animated.View>
     </View>
   );

@@ -21,7 +21,7 @@ const DataTable = ({ data }) => {
   const ICON_PROPS = { color: "rgb(148, 163, 184)", iconClass: "w-6 h-6" };
 
   const preferences = useSelector((state) => state.preferencesState);
-  const hour = getCurrentHour();
+  const hour = getCurrentHour(data.timezone);
 
   return (
     <>

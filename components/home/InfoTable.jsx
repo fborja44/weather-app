@@ -32,7 +32,7 @@ const Value = ({ suffix, children }) => {
 };
 
 const InfoTable = ({ data }) => {
-  const hour = getCurrentHour();
+  const hour = getCurrentHour(data.timezone);
   const preferences = useSelector((state) => state.preferencesState);
 
   return (

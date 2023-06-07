@@ -5,7 +5,7 @@ import ListItemContainer from "./ListItemContainer";
 import ListContainer from "./ListContainer";
 
 const PrecipitationItem = ({ data, index, timezone }) => {
-  const hour = getCurrentHour();
+  const hour = getCurrentHour(data.timezone);
   const last = index === hour + 23;
   const probability = data.hourly.precipitation_probability[index];
   if (data) {
@@ -37,7 +37,7 @@ const PrecipitationItem = ({ data, index, timezone }) => {
 };
 
 const Precipitation = ({ data, timezone }) => {
-  const hour = getCurrentHour();
+  const hour = getCurrentHour(timezone);
 
   if (data) {
     const timeArray = data.hourly.time.slice(hour, 24 + hour);

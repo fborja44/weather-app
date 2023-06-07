@@ -2,19 +2,12 @@ import React from "react";
 
 import { useRouter } from "expo-router";
 
-import {
-  StyleSheet,
-  View,
-  Text,
-  SafeAreaView,
-  Dimensions,
-  TouchableOpacity,
-} from "react-native";
+import { View, Text, SafeAreaView, TouchableOpacity } from "react-native";
 import { Stack } from "expo-router";
-import { LinearGradient } from "expo-linear-gradient";
 import { getCurrentDate } from "../utils/date";
 import LocationButton from "../components/common/LocationButton";
 import CalendarIcon from "../assets/icons/CalendarIcon";
+import BackgroundGradient from "../components/home/BackgroundGradient";
 
 import HomeWeather from "../components/home/HomeWeather";
 
@@ -28,15 +21,13 @@ import Error from "../components/common/Error";
 Text.defaultProps = Text.defaultProps || {};
 Text.defaultProps.style = { fontFamily: "Inter" };
 
-const screenDimensions = Dimensions.get("screen");
-
 const Home = () => {
   const router = useRouter();
   const location = useSelector((state) => state.locationState);
   const preferences = useSelector((state) => state.preferencesState);
   const { data, isLoading, error, refetch } = useFetch(
     buildEndpoint(
-      "forecast?&hourly=temperature_2m,relativehumidity_2m,precipitation,is_day,apparent_temperature,precipitation_probability,weathercode,surface_pressure,visibility,windspeed_10m&daily=uv_index_max&current_weather=true&timeformat=unixtime&forecast_days=3",
+      "forecast?&hourly=temperature_2m,relativehumidity_2m,precipitation,is_day,apparent_temperature,precipitation_probability,weathercode,surface_pressure,visibility,windspeed_10m&daily=uv_index_max,sunrise,sunset&current_weather=true&timeformat=unixtime&forecast_days=3",
       preferences,
       location.timezone
     ),
@@ -49,11 +40,7 @@ const Home = () => {
 
   return (
     <SafeAreaView className="flex flex-1">
-      <LinearGradient
-        colors={["#00A7E1", "#62C9EC", "#C1EAF8", "#FFFFFF"]}
-        locations={[0, 0.4, 0.65, 0.88]}
-        style={styles.background}
-      />
+      <BackgroundGradient data={data} />
       <Stack.Screen
         options={{
           title: "",
@@ -85,22 +72,9 @@ const Home = () => {
         </View>
       )}
       {isLoading && <Loading />}
-      {error && !isLoading && <Error refetch={refetch}/>}
+      {error && !isLoading && <Error refetch={refetch} />}
     </SafeAreaView>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  background: {
-    position: "absolute",
-    left: 0,
-    right: 0,
-    top: 0,
-    height: screenDimensions.height,
-  },
-});
 
 export default Home;

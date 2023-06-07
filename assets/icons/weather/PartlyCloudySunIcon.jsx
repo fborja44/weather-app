@@ -6,7 +6,7 @@ import Svg, {
   Stop,
 } from "react-native-svg";
 
-const PartlyCloudyIcon = ({ color, iconClass }) => {
+const PartlyCloudySunIcon = ({ iconClass }) => {
   return (
     <Svg
       viewBox="0 0 34 32"
@@ -49,9 +49,8 @@ const PartlyCloudyIcon = ({ color, iconClass }) => {
   );
 };
 
-PartlyCloudyIcon.defaultProps = {
+PartlyCloudySunIcon.defaultProps = {
   iconClass: "w-56 h-56",
-  color: "white",
 };
 
-export default PartlyCloudyIcon;
+export default PartlyCloudySunIcon;

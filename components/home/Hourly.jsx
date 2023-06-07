@@ -5,7 +5,7 @@ import ListItemContainer from "./ListItemContainer";
 import ListContainer from "./ListContainer";
 
 const HourlyItem = ({ data, index, timezone }) => {
-  const hour = getCurrentHour();
+  const hour = getCurrentHour(data.timezone);
   const last = index === hour + 23;
   if (data) {
     return (
@@ -14,6 +14,10 @@ const HourlyItem = ({ data, index, timezone }) => {
           <WeatherIcon
             weatherCode={data.hourly.weathercode[index]}
             iconClass="w-9 h-9"
+            timezone={data.timezone}
+            time={data.hourly.time[index]}
+            sunrise={data.daily.sunrise[0]}
+            sunset={data.daily.sunset[0]}
           />
         </View>
         <View className={"flex items-end"}>
@@ -30,7 +34,7 @@ const HourlyItem = ({ data, index, timezone }) => {
 };
 
 const Hourly = ({ data, timezone }) => {
-  const hour = getCurrentHour();
+  const hour = getCurrentHour(timezone);
 
   if (data) {
     const timeArray = data.hourly.time.slice(hour, 24 + hour);

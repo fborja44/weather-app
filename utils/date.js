@@ -75,23 +75,46 @@ export const parseUnixTime = (unixTimestamp, timezone) => {
 export const parseUnixTimeFull = (unixTimestamp, timezone) => {
   const date = new Date(unixTimestamp * 1000); // Convert seconds to milliseconds
   // Get hours, minutes, and AM/PM indicator from the date object
-  var hours = date.getHours();
-  var minutes = date.getMinutes();
-  var ampm = hours >= 12 ? 'PM' : 'AM';
+  // Set the timezone
+  const options = { timeZone: timezone };
 
-  // Convert hours from 24-hour format to 12-hour format
-  hours = hours % 12;
-  hours = hours ? hours : 12; // If hours is 0, set it to 12
+  // Get the formatted time string with timezone
+  const timeString = date.toLocaleString("en-US", {
+    hour: "numeric",
+    minute: "numeric",
+    hour12: true,
+    ...options,
+  });
 
-  // Add leading zeros to minutes if necessary
-  minutes = minutes < 10 ? '0' + minutes : minutes;
+  return timeString;
+};
 
-  // Format the time string as H:MM AM/PM
-  return timeString = hours + ':' + minutes + ' ' + ampm;
-}
-
-export const getCurrentHour = () => {
+export const getCurrentHour = (timezone) => {
   const date = new Date();
-  const hour = date.getHours(); // Get the current hour (0-23)
-  return hour;
+
+  // Set the timezone
+  const options = { timeZone: timezone, hour12: false };
+
+  // Get the current hour from the date with timezone
+  const hour = date.toLocaleString("en-US", {
+    hour: "numeric",
+    ...options,
+  });
+
+  return parseInt(hour, 10); // Return the hour as an integer
+};
+
+export const getHourTimezone = (unixTimestamp, timezone) => {
+  const date = new Date(unixTimestamp * 1000); // Convert seconds to milliseconds
+
+  // Set the timezone
+  const options = { timeZone: timezone, hour12: false };
+
+  // Get the hour from the date with timezone
+  const hour = date.toLocaleString("en-US", {
+    hour: "numeric",
+    ...options,
+  });
+
+  return parseInt(hour, 10); // Return the hour as an integer (0-23)
 };
