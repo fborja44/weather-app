@@ -121,7 +121,7 @@ export const WeatherIcon = ({
   }
 };
 
-const MessageIconClass = "w-10 h-10 -rotate-12 relative left-[6]";
+const MessageIconClass = "w-10 h-10";
 
 export const messages = {
   sunny: {
@@ -179,6 +179,11 @@ export const messages = {
     message: "It's foggy out! Drive carefully.",
     icon: <LowVisibilityIcon color="#F17720" iconClass={MessageIconClass} />,
   },
+  haze: {
+    title: "Air quality warning!",
+    message: "Wear a mask or stay indoors!",
+    icon: null
+  }
 };
 
 export const getMessage = (weatherCode, data, preferences) => {
