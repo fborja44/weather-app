@@ -5,28 +5,29 @@ import { StyleSheet, Dimensions, Animated } from "react-native";
 const screenDimensions = Dimensions.get("screen");
 
 const RadialBackground = () => {
+  // Shift background "sun" animation
   const positionY = useRef(new Animated.Value(0)).current;
-
+  const shiftDuration = 3000;
   useEffect(() => {
-    const moveAnimation = Animated.loop(
+    const shiftAnimation = Animated.loop(
       Animated.sequence([
         Animated.timing(positionY, {
-          toValue: -50,
-          duration: 3000,
+          toValue: -100,
+          duration: shiftDuration,
           useNativeDriver: true,
         }),
         Animated.timing(positionY, {
           toValue: 0,
-          duration: 3000,
+          duration: shiftDuration,
           useNativeDriver: true,
         }),
       ])
     );
 
-    moveAnimation.start();
+    shiftAnimation.start();
 
     return () => {
-      moveAnimation.stop();
+      shiftAnimation.stop();
     };
   }, [positionY]);
 
@@ -40,13 +41,14 @@ const RadialBackground = () => {
             cy="0%"
             rx="130%"
             ry="70%"
-            fx="70%"
+            fx="90%"
             fy="0%"
           >
             <Stop offset="30%" stopColor="rgba(255, 118, 62, 0.9)" />
             <Stop offset="40%" stopColor="rgba(255, 144, 99, 0.75)" />
             <Stop offset="55%" stopColor="rgba(255, 168, 133, 0.60)" />
             <Stop offset="85%" stopColor="rgba(255, 255, 255, 0)" />
+            <Stop offset="100%" stopColor="rgba(255, 255, 255, 1)" />
           </RadialGradient>
         </Defs>
         <Rect width="100%" height="100%" fill="url(#gradient)" />
