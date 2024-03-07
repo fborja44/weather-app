@@ -1,5 +1,5 @@
 import { Stack } from 'expo-router';
-import { useCallback } from 'react';
+import { useCallback, useEffect } from 'react';
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 import Footer from '../components/footer/Footer';
@@ -7,6 +7,7 @@ import { Provider as ReduxProvider } from 'react-redux';
 import { store, persistor } from '../redux/store';
 import { PersistGate } from 'redux-persist/integration/react';
 import { StatusBar } from 'react-native';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 SplashScreen.preventAutoHideAsync(); // Show splash screen while app is loading
 
@@ -16,23 +17,29 @@ const Layout = () => {
 		Questrial: require('../assets/fonts/Questrial.ttf'),
 	});
 
+	useEffect(() => {
+		if (fontError) throw fontError;
+	}, [fontError]);
+
 	const onLayoutRootView = useCallback(async () => {
-		if (fontsLoaded || fontError) {
+		if (fontsLoaded) {
 			await SplashScreen.hideAsync(); // Hide splash screen when finished loading
 		}
-	}, [fontsLoaded, fontError]);
+	}, [fontsLoaded]);
 
 	if (!fontsLoaded && !fontError) {
 		return null;
 	}
-  console.log("App Loaded");
+
 	return (
 		<ReduxProvider store={store}>
-			<PersistGate loading={null} persistor={persistor}>
-				<StatusBar barStyle='light-content' />
-				<Stack onLayout={onLayoutRootView} />
-				<Footer />
-			</PersistGate>
+			<SafeAreaProvider>
+				<PersistGate loading={null} persistor={persistor}>
+					<StatusBar barStyle='light-content' />
+					<Stack onLayout={onLayoutRootView} />
+					<Footer />
+				</PersistGate>
+			</SafeAreaProvider>
 		</ReduxProvider>
 	);
 };

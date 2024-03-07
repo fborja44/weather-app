@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import { Animated, TouchableWithoutFeedback } from "react-native";
+import { Animated, Pressable } from "react-native";
 import { WeatherIcon } from "../../utils/weather";
 
 const HomeWeatherIcon = ({ data }) => {
@@ -59,7 +59,7 @@ const HomeWeatherIcon = ({ data }) => {
   };
 
   return (
-    <TouchableWithoutFeedback
+    <Pressable
       className="h-60 relative top-[6]"
       onPress={doShake}
     >
@@ -80,7 +80,7 @@ const HomeWeatherIcon = ({ data }) => {
           sunset={data.daily.sunset[0]}
         />
       </Animated.View>
-    </TouchableWithoutFeedback>
+    </Pressable>
   );
 };
 
