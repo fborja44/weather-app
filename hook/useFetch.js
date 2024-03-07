@@ -16,6 +16,7 @@ const useFetch = (endpoint, location) => {
   const fetchData = async () => {
     setIsLoading(true);
     try {
+      console.log("Fetching weather data...");
       const response = await axios.get(url, { params });
       setData(response.data);
       setIsLoading(false);

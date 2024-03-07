@@ -1,10 +1,18 @@
 {
-  "expo": {
-    "scheme": "acme",
-    "web": {
-      "bundler": "metro"
-    },
-    "name": "weather-app",
-    "slug": "weather-app"
-  }
+	"expo": {
+		"scheme": "acme",
+		"web": {
+			"bundler": "metro"
+		},
+		"name": "weather-app",
+		"slug": "weather-app",
+		"plugins": [
+			[
+				"expo-font",
+				{
+					"fonts": ["./assets/fonts/Inter.ttf", "./assets/fonts/Questrial.ttf"]
+				}
+			]
+		]
+	}
 }
