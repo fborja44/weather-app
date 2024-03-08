@@ -23,7 +23,7 @@ const Insights = () => {
 
   const { data, isLoading, error, refetch } = useFetch(
     buildEndpoint(
-      "forecast?&hourly=temperature_2m,weathercode,cloudcover,visibility,is_day,windspeed_10m,winddirection_10m,windgusts_10m&daily=temperature_2m_max,temperature_2m_min,sunrise,sunset,uv_index_max&current_weather=true&timeformat=unixtime&forecast_days=1&timezone=America%2FNew_York",
+      "forecast?&current=temperature_2m,relative_humidity_2m,apparent_temperature,is_day,weather_code,wind_speed_10m,wind_direction_10m,wind_gusts_10m&hourly=cloud_cover,visibility,is_day&daily=temperature_2m_max,temperature_2m_min,sunrise,sunset,uv_index_max&forecast_days=1&timeformat=unixtime",
       preferences,
       location.timezone
     ),

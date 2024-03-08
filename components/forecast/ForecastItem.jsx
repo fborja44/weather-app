@@ -13,7 +13,7 @@ Text.defaultProps.style = { fontFamily: "Inter" };
 const ForecastItem = ({ data, index }) => {
   const preferences = useSelector((state) => state.preferencesState);
 
-  if (data) {
+  if (data && data.daily) {
     return (
       <View className="flex flex-row w-full items-center justify-between mb-4 h-[60]">
         <View className="w-2/5">
@@ -23,12 +23,12 @@ const ForecastItem = ({ data, index }) => {
         </View>
         <View className="flex flex-1 flex-row items-center">
           <WeatherIcon
-            weatherCode={data.daily.weathercode[index]}
+            weatherCode={data.daily.weather_code[index]}
             iconClass="w-8 h-8 mr-3"
             day
           />
           <Text className="text-white font-primary capitalize text-sm">
-            {convertWeatherCodeToString(data.daily.weathercode[index])}
+            {convertWeatherCodeToString(data.daily.weather_code[index])}
           </Text>
         </View>
         <View className="flex-1 items-end">

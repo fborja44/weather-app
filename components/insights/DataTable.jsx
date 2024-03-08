@@ -30,7 +30,7 @@ const DataTable = ({ data }) => {
           col
           left
           label="Speed"
-          value={`${data.current_weather.windspeed} ${preferences.windspeed_unit}`}
+          value={`${data.current.wind_speed_10m} ${preferences.windspeed_unit}`}
           icon={<SpeedIcon {...ICON_PROPS} />}
         />
         <DataDivider />
@@ -39,7 +39,7 @@ const DataTable = ({ data }) => {
           left
           right
           label="Gust"
-          value={`${data.hourly.windgusts_10m[hour] || "0"} ${
+          value={`${data.current.wind_gusts_10m || "0"} ${
             preferences.windspeed_unit
           }`}
           icon={<GustIcon {...ICON_PROPS} />}
@@ -49,8 +49,8 @@ const DataTable = ({ data }) => {
           col
           label="Direction"
           value={`${
-            data.current_weather.winddirection
-          }° ${convertDegreesToCardinal(data.current_weather.winddirection)}`}
+            data.current.wind_direction_10m
+          }° ${convertDegreesToCardinal(data.current.wind_direction_10m)}`}
           icon={<CompassIcon {...ICON_PROPS} />}
         />
       </DataTableContainer>
@@ -64,7 +64,7 @@ const DataTable = ({ data }) => {
         <DataDivider />
         <DataItem
           label="Clouds"
-          value={`${data.hourly.cloudcover[hour]}%`}
+          value={`${data.hourly.cloud_cover[hour]}%`}
           icon={<CloudsIcon {...ICON_PROPS} />}
         />
       </DataTableContainer>

@@ -8,7 +8,7 @@ import { useSelector } from "react-redux";
 const InsightsWeather = ({ data }) => {
   const preferences = useSelector((state) => state.preferencesState);
 
-  if (data.current_weather) {
+  if (data.current) {
     return (
       <>
         <View className="flex flex-col items-end px-4">
@@ -20,7 +20,7 @@ const InsightsWeather = ({ data }) => {
           </View>
           <View className="flex flex-row mt-4">
             <Text className="text-8xl text-white font-black">
-              {data.current_weather.temperature.toFixed(0)}
+              {data.current.temperature_2m.toFixed(0)}
             </Text>
             <Text className="text-6xl text-white font-bold">
               &#0176;{preferences.temperature_unit}
