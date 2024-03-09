@@ -1,14 +1,11 @@
-# Expo Router Example
+# Weather App
 
-Use [`expo-router`](https://expo.github.io/router) to build native navigation using files in the `app/` directory.
+A simple weather app built using Expo and React Native.
 
-## 🚀 How to use
-
-```sh
-npx create-expo-app -e with-router
-```
-
-## 📝 Notes
-
-- [Expo Router: Docs](https://expo.github.io/router)
-- [Expo Router: Repo](https://github.com/expo/router)
+## Features
+- Daily Weather and Conditions Insights
+- Hourly Temperature and Precipitation Forecast
+- 14 Day Forecast
+- Location Selection
+- Saved Unit Preferences
+- Subtle Animations and Micro-Interactions
