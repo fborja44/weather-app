@@ -16,3 +16,16 @@ Mobile in-app screenshots:
 - Location Selection
 - Saved Unit Preferences
 - Subtle Animations and Micro-Interactions
+
+## Development
+For ease of development, try the Expo Go app: https://docs.expo.dev/get-started/expo-go/
+
+1. Install dependencies
+
+`npm i `
+
+2. Start development server
+
+`npm start` or `npx expo start`
+
+For more information on Expo, please see: https://docs.expo.dev/router/installation/#quick-start
